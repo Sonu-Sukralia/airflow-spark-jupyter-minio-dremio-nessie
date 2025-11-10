@@ -1,0 +1,47 @@
+#------------------------------------------------------------------------------------------
+# this is the final airflow docker file 
+
+Docker file 
+{
+FROM apache/airflow:2.7.1-python3.9
+
+USER root
+RUN apt-get update && \
+    apt-get install -y gcc python3-dev openjdk-11-jdk && \
+    apt-get clean
+
+# Set JAVA_HOME environment variable.
+ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64 
+
+USER airflow
+
+RUN pip install apache-airflow apache-airflow-providers-apache-spark pyspark==3.4.0 Faker
+
+}
+
+
+#------------------------------------------------------------------------------------------
+# This the the final jupyter spark dockerfile 
+
+
+FROM --platform=linux/amd64 sonusukralia/jupyterd:3.5
+
+USER root
+
+RUN pip install --no-cache-dir pyspark==3.5.1 boto3
+
+ENV SPARK_HOME=/usr/local/spark-3.5.0-bin-hadoop3
+# overwrite PATH at container runtime, not through Jupyter
+ENV PATH=/usr/local/spark-3.5.0-bin-hadoop3/bin:/usr/local/bin:/usr/bin:/bin:/opt/conda/bin
+
+RUN apt-get update && apt-get install -y netcat && rm -rf /var/lib/apt/lists/*
+
+# forget start-notebook.sh; run jupyter lab directly
+ENTRYPOINT ["/bin/bash", "-c", \
+  "export SPARK_HOME=/usr/local/spark-3.5.0-bin-hadoop3 && \
+   export PATH=/usr/local/spark-3.5.0-bin-hadoop3/bin:/usr/local/bin:/usr/bin:/bin:/opt/conda/bin && \
+   exec jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root"]
+
+
+#--------------------------------------------------------------------------------------------
+

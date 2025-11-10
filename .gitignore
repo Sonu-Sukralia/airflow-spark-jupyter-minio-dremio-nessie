@@ -78,3 +78,31 @@ Thumbs.db
 # Dremio metadata and runtime data
 dremio/
 !dremio/.gitkeep
+
+
+# =====================
+# 🧠 Dremio runtime & metadata (ignore everything except placeholder)
+# =====================
+dremio/
+!dremio/.gitkeep
+
+# ZooKeeper internal state
+dremio/zk/
+dremio/zk/zookeeper/
+dremio/zk/zookeeper/version-2/
+dremio/zk/zookeeper/version-2/log.*
+
+# Avoid binary metadata
+dremio/db/
+dremio/log/
+dremio/spill/
+dremio/scratch/
+dremio/config/
+
+# =====================
+# ☁️ MinIO, Postgres, and other volumes
+# =====================
+minio/
+postgres/
+logs/
+spark-events/

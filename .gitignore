@@ -79,3 +79,50 @@ nessie/
 Thumbs.db
 .DS_Store
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# =====================
+# 🗄️ PostgreSQL persistence
+# =====================
+postgres/
+!postgres/.gitkeep
+
+# =====================
+# ☁️ MinIO internal storage & temp files
+# =====================
+minio/
+!minio/.gitkeep
+
+# =====================
+# 🧩 Dremio metadata & persistence
+# =====================
+dremio/
+!dremio/.gitkeep
+
+# =====================
+# ⚙️ Logs (Airflow, Spark, etc.)
+# =====================
+logs/
+!logs/.gitkeep
+
+# =====================
+# ⚙️ Jupyter runtime temp files
+# =====================
+notebooks/.local/share/jupyter/runtime/
+notebooks/.local/share/jupyter/runtime/*.json

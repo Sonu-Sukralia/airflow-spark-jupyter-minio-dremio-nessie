@@ -1,15 +1,25 @@
 # =====================
+# 🧠 Spark + Airflow logs
+# =====================
+logs/
+spark-events/
+*.log
+
+# =====================
 # 🗄️ PostgreSQL persistence (ignore all database files)
 # =====================
 postgres/
-!postgres/.gitkeep  # keep folder visible if needed
+!postgres/.gitkeep
 
 # =====================
-# ⚙️ Jupyter runtime temp files
+# ☁️ MinIO / Dremio persisted data
 # =====================
-notebooks/.local/share/jupyter/runtime/
-notebooks/.local/share/jupyter/runtime/*.json
-
+minio/
+!minio/.gitkeep
+dremio/
+!dremio/.gitkeep
+nessie/
+!nessie/.gitkeep
 
 # =====================
 # ⚙️ Python + Jupyter
@@ -23,106 +33,44 @@ __pycache__/
 */.ipynb_checkpoints/
 .notebook_metadata/
 */.notebook_metadata/
+jobs/__pycache__/
 
-# Ignore Jupyter runtime / temp session files
+# Jupyter runtime / temp session files
 **/.local/
 **/.local/share/jupyter/
 **/.local/share/jupyter/runtime/
 **/.local/share/jupyter/runtime/*.json
 
 # =====================
-# 🧠 Spark + Airflow logs
-# =====================
-logs/
-spark-events/
-jobs/__pycache__/
-*.log
-
-# =====================
-# 🗄️ PostgreSQL persistence
-# =====================
-postgres/
-!postgres/.gitkeep  # if you want to keep the folder itself in git
-
-# =====================
-# 📦 Docker / temp files
+#  Docker / temp files
 # =====================
 *.pid
 *.sock
 *.tmp
 *.swp
 *.bak
-*.DS_Store
-.env
-airflow.env
 .docker/
 *.tar
 *.zip
 
 # =====================
-# ☁️ MinIO / Dremio persisted data
-# =====================
-minio/
-dremio/
-nessie/
-
-# =====================
-# 🔬 VSCode / editor settings
+# 🔬 VSCode / IDE settings
 # =====================
 .vscode/
 .idea/
 *.code-workspace
+*.iml
+
+# =====================
+# � Environment files
+# =====================
+.env
+.env.local
+.env.*.local
+# Note: airflow.env is typically committed; adjust if needed
 
 # =====================
 # 🧩 OS-specific
 # =====================
-Thumbs.db
 .DS_Store
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# =====================
-# 🗄️ PostgreSQL persistence
-# =====================
-postgres/
-!postgres/.gitkeep
-
-# =====================
-# ☁️ MinIO internal storage & temp files
-# =====================
-minio/
-!minio/.gitkeep
-
-# =====================
-# 🧩 Dremio metadata & persistence
-# =====================
-dremio/
-!dremio/.gitkeep
-
-# =====================
-# ⚙️ Logs (Airflow, Spark, etc.)
-# =====================
-logs/
-!logs/.gitkeep
-
-# =====================
-# ⚙️ Jupyter runtime temp files
-# =====================
-notebooks/.local/share/jupyter/runtime/
-notebooks/.local/share/jupyter/runtime/*.json
+Thumbs.db

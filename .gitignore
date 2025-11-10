@@ -74,3 +74,7 @@ jobs/__pycache__/
 # =====================
 .DS_Store
 Thumbs.db
+
+# Dremio metadata and runtime data
+dremio/
+!dremio/.gitkeep

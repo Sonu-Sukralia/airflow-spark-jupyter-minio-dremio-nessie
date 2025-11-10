@@ -1,0 +1,43 @@
+IMPORTANT COMMENTS / USAGE NOTES
+
+1) Directory permissions (be careful):
+
+   # Give full permissions (recursive) to a directory - USE WITH CAUTION
+   chmod -R 777 <path-to-dir>
+
+   Example:
+   chmod -R 777 ./data
+
+   SECURITY NOTE: Setting 777 makes the directory readable, writable and executable by everyone. This is insecure for production or multi-user systems. Prefer changing ownership or using more restrictive permissions such as 755, or run the service as the appropriate user:
+
+   # safer alternatives
+   chown -R $(whoami):$(whoami) <path-to-dir>
+   chmod -R 755 <path-to-dir>
+
+2) Docker / Docker Compose commands
+
+   # Ensure Docker and Docker Compose are installed and the Docker daemon is running.
+
+   # Start the stack (project name: data_platform) in detached mode
+   docker compose -p data_platform up -d
+
+   # Stop and remove containers started by the compose project
+   docker compose -p data_platform down
+
+   Notes:
+   - Older systems use the `docker-compose` (hyphen) binary. On newer Docker (v20.10+) the recommended command is `docker compose` (no hyphen).
+   - If you need to run with sudo (depending on your Docker setup):
+       sudo docker compose -p data_platform up -d
+
+3) Common troubleshooting tips
+
+   - If you see permission errors when containers try to read/write mounted volumes, ensure the host folder ownership and permissions allow the container user to access them.
+   - To inspect logs:
+       docker compose -p data_platform logs -f
+   - To list running containers for the project:
+       docker compose -p data_platform ps
+
+4) Quick reminders
+
+   - Avoid using `chmod -R 777` on sensitive paths.
+   - Prefer creating and using a dedicated system user or adjusting ownership for any volume-mounted data directories.

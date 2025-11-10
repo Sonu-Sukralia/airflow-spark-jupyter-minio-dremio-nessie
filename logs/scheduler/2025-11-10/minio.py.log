@@ -5272,3 +5272,24 @@ sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) connection to serve
 [2025-11-10T22:18:19.051+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:18:19.051+0000] {dag.py:2915} INFO - Sync 1 DAGs
 [2025-11-10T22:18:19.070+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:18:19.070+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_incremental_etl to 2025-11-10T00:00:00+00:00, run_after=2025-11-11T00:00:00+00:00
 [2025-11-10T22:18:19.087+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/minio.py took 0.079 seconds
+[2025-11-10T22:18:49.201+0000] {processor.py:157} INFO - Started process (PID=328) to work on /opt/airflow/dags/minio.py
+[2025-11-10T22:18:49.202+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/minio.py for tasks to queue
+[2025-11-10T22:18:49.204+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:18:49.204+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/minio.py
+[2025-11-10T22:18:49.213+0000] {processor.py:839} INFO - DAG(s) dict_keys(['dag_incremental_etl']) retrieved from /opt/airflow/dags/minio.py
+[2025-11-10T22:18:49.241+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:18:49.240+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-11-10T22:18:49.264+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:18:49.264+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_incremental_etl to 2025-11-10T00:00:00+00:00, run_after=2025-11-11T00:00:00+00:00
+[2025-11-10T22:18:49.291+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/minio.py took 0.093 seconds
+[2025-11-10T22:19:19.369+0000] {processor.py:157} INFO - Started process (PID=338) to work on /opt/airflow/dags/minio.py
+[2025-11-10T22:19:19.370+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/minio.py for tasks to queue
+[2025-11-10T22:19:19.371+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:19:19.371+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/minio.py
+[2025-11-10T22:19:19.382+0000] {processor.py:839} INFO - DAG(s) dict_keys(['dag_incremental_etl']) retrieved from /opt/airflow/dags/minio.py
+[2025-11-10T22:19:19.409+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:19:19.409+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-11-10T22:19:19.432+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:19:19.431+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_incremental_etl to 2025-11-10T00:00:00+00:00, run_after=2025-11-11T00:00:00+00:00
+[2025-11-10T22:19:19.463+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/minio.py took 0.097 seconds
+[2025-11-10T22:19:49.626+0000] {processor.py:157} INFO - Started process (PID=348) to work on /opt/airflow/dags/minio.py
+[2025-11-10T22:19:49.627+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/minio.py for tasks to queue
+[2025-11-10T22:19:49.628+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:19:49.628+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/minio.py
+[2025-11-10T22:19:49.635+0000] {processor.py:839} INFO - DAG(s) dict_keys(['dag_incremental_etl']) retrieved from /opt/airflow/dags/minio.py
+[2025-11-10T22:19:49.653+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:19:49.652+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-11-10T22:19:49.665+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:19:49.664+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_incremental_etl to 2025-11-10T00:00:00+00:00, run_after=2025-11-11T00:00:00+00:00
+[2025-11-10T22:19:49.676+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/minio.py took 0.051 seconds

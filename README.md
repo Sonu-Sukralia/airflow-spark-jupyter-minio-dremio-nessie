@@ -1,229 +1,220 @@
-# Airflow + Spark + Jupyter + MinIO + Dremio + Nessie
+# 🧠 Airflow + Spark + Jupyter + MinIO + Dremio + Nessie
 
 ![Build](https://github.com/Sonu-Sukralia/airflow-spark-jupyter-minio-dremio-nessie/actions/workflows/ci.yml/badge.svg)
 ![Last Commit](https://img.shields.io/github/last-commit/Sonu-Sukralia/airflow-spark-jupyter-minio-dremio-nessie)
 ![Issues](https://img.shields.io/github/issues/Sonu-Sukralia/airflow-spark-jupyter-minio-dremio-nessie)
 ![License](https://img.shields.io/github/license/Sonu-Sukralia/airflow-spark-jupyter-minio-dremio-nessie)
 
-Airflow + Spark + Jupyter + MinIO + Dremio + Nessie
-Build Last Commit Issues License
+A fully containerized **end-to-end data platform** built with Docker Compose — integrating **Apache Airflow**, **Apache Spark**, **MinIO**, **Dremio**, **Project Nessie**, and **JupyterLab** into one cohesive stack.  
 
-You can copy-paste this directly into your repository’s README.md.
+This environment provides a **local data lakehouse**, capable of **ETL orchestration**, **distributed computation**, **object storage**, and **SQL-based analytics**.
 
-A fully containerized end-to-end data platform built with Docker Compose — integrating Apache Airflow, Apache Spark, MinIO, Dremio, Project Nessie, and JupyterLab into one cohesive stack.
+---
 
-This environment provides a local data lakehouse, capable of ETL orchestration, distributed computation, object storage, and SQL-based analytics.
+## 🧩 Tech Stack Badges
 
-🧩 Components Overview
-Service	Image	Ports	Description
-Airflow Webserver	sonusukralia/airflow-spark_asm:2.7.1	8080	UI for orchestrating Spark and data pipelines
-Airflow Scheduler	sonusukralia/airflow-spark_asm:2.7.1	—	Executes and schedules DAGs
-Spark Master	sonusukralia/spark_asm:3.4.0	7077, 9090	Central Spark cluster coordinator
-Spark Worker	sonusukralia/spark_asm:3.4.0	—	Executes Spark jobs from the master
-Spark History Server	sonusukralia/spark_asm:3.4.0	18080	Job logs and execution history
-JupyterLab	sonusukralia/jupyter_spark_asm:3.5	8888, 4040	Interactive notebooks connected to Spark
-MinIO	sonusukralia/minio_asm:7.0	9000, 9001	S3-compatible object storage
-MinIO Client (mc)	sonusukralia/minio-client_asm:7.0	—	Initializes MinIO buckets and policies
-Postgres	sonusukralia/postgres_asm:14.0	5432	Airflow metadata database
-Dremio	dremio/dremio-oss:latest	9047, 31010, 32010	Data lakehouse query engine and UI
-Nessie	projectnessie/nessie:0.67.0	19120	Git-like version control for data tables
-🧱 Architecture
-          ┌────────────────────────┐
-          │       Airflow           │
-          │ (Scheduler & Web UI)    │
-          └──────────┬──────────────┘
-                     │
-   ┌─────────────────┴──────────────────┐
-   │         Spark Cluster              │
-   │  (Master, Worker, History Server)  │
-   └─────────────────┬──────────────────┘
-                     │
-            ┌────────┴────────┐
-            │     MinIO       │───► Object Storage (S3)
-            └────────┬────────┘
-                     │
-            ┌────────┴────────┐
-            │     Nessie      │───► Versioned Data Catalog
-            └────────┬────────┘
-                     │
-            ┌────────┴────────┐
-            │     Dremio      │───► SQL, BI, and Data Exploration
-            └─────────────────┘
-All services are connected via the data-platform-network.
+| Component | Badge |
+|------------|--------|
+| **Apache Airflow** | ![Airflow](https://img.shields.io/badge/Airflow-2.7.1-blue?logo=apacheairflow&logoColor=white) |
+| **Apache Spark** | ![Spark](https://img.shields.io/badge/Spark-3.4.0-orange?logo=apachespark&logoColor=white) |
+| **JupyterLab** | ![Jupyter](https://img.shields.io/badge/JupyterLab-3.5-orange?logo=jupyter&logoColor=white) |
+| **MinIO** | ![MinIO](https://img.shields.io/badge/MinIO-7.0-ff69b4?logo=minio&logoColor=white) |
+| **Dremio** | ![Dremio](https://img.shields.io/badge/Dremio-Lakehouse-blue?logo=dremio&logoColor=white) |
+| **Project Nessie** | ![Nessie](https://img.shields.io/badge/Nessie-0.67.0-9cf) |
+| **PostgreSQL** | ![Postgres](https://img.shields.io/badge/PostgreSQL-14.0-316192?logo=postgresql&logoColor=white) |
 
-🧠 Live Container Status
-Below is the live snapshot from your running setup (docker ps output):
+---
 
-CONTAINER ID IMAGE STATUS PORTS 7870a97dd4e2 sonusukralia/airflow-spark_asm:2.7.1 Up (healthy) 0.0.0.0:8080->8080/tcp airflow-webserver 24142fd8984b sonusukralia/jupyter_spark_asm:3.5 Up (unhealthy) 0.0.0.0:8888->8888/tcp, 4040/tcp jupyter-spark 7f6d000284b4 sonusukralia/airflow-spark_asm:2.7.1 Up 8080/tcp airflow-scheduler 50ddbbd5e545 dremio/dremio-oss:latest Up 9047, 31010, 32010/tcp dremio 0bbb21599492 sonusukralia/minio-client_asm:7.0 Up — minio-mc 940864c427b2 sonusukralia/spark_asm:3.4.0 Up — spark-worker 848a933e2b0c sonusukralia/spark_asm:3.4.0 Up 18080/tcp spark-history-server b55d55df9781 projectnessie/nessie:0.67.0 Up 19120/tcp nessie 08a2fdc6838d sonusukralia/postgres_asm:14.0 Up 5432/tcp postgres 3988ee3e37d8 sonusukralia/spark_asm:3.4.0 Up 7077, 9090/tcp spark-master 867e625cd8d9 sonusukralia/minio_asm:7.0 Up 9000-9001/tcp minio
+## 🧱 Architecture
 
-🚀 Quick Start
-Clone and start:
+```
+              ┌────────────────────────┐
+              │        Airflow          │
+              │ (Scheduler & Web UI)    │
+              └──────────┬──────────────┘
+                         │
+       ┌─────────────────┴──────────────────┐
+       │          Spark Cluster             │
+       │ (Master, Worker, History Server)   │
+       └─────────────────┬──────────────────┘
+                         │
+                ┌────────┴────────┐
+                │      MinIO      │ ───► Object Storage (S3)
+                └────────┬────────┘
+                         │
+                ┌────────┴────────┐
+                │      Nessie     │ ───► Versioned Data Catalog
+                └────────┬────────┘
+                         │
+                ┌────────┴────────┐
+                │     Dremio      │ ───► SQL, BI, and Data Exploration
+                └─────────────────┘
+```
 
+All services are connected via the `data-platform-network`.
+
+---
+
+## 🚀 Quick Start
+
+```bash
 git clone https://github.com/Sonu-Sukralia/airflow-spark-jupyter-minio-dremio-nessie.git
 cd airflow-spark-jupyter-minio-dremio-nessie
-docker-compose up -d
+docker compose up -d
+```
 
+---
 
-Access services in your browser:
+## 🌐 Access Services
 
-Service	URL
-Airflow UI	http://localhost:8080
+| Service | URL |
+|----------|-----|
+| **Airflow UI** | [http://localhost:8080](http://localhost:8080) |
+| **Spark Master UI** | [http://localhost:9090](http://localhost:9090) |
+| **Spark History Server** | [http://localhost:18080](http://localhost:18080) |
+| **JupyterLab** | [http://localhost:8888](http://localhost:8888) |
+| **MinIO Console** | [http://localhost:9001](http://localhost:9001) |
+| **Dremio UI** | [http://localhost:9047](http://localhost:9047) |
+| **Nessie UI** | [http://localhost:19120/api/v1/ui/](http://localhost:19120/api/v1/ui/) |
 
-Spark Master UI	http://localhost:9090
+---
 
-Spark History Server	http://localhost:18080
+### 🔑 Retrieve Jupyter Token
 
-JupyterLab	http://localhost:8888
-For token :- docker logs jupyter-spark | grep token=
-and :- echo "http://localhost:8888/?token=$(docker exec jupyter-spark jupyter notebook list | grep -oP '(?<=token=)[a-f0-9]+')"
+```bash
+docker logs jupyter-spark | grep token=
+```
 
-MinIO Console	http://localhost:9001
+Or open directly in browser:
 
-Dremio UI	http://localhost:9047
+```bash
+echo "http://localhost:8888/?token=$(docker exec jupyter-spark jupyter notebook list | grep -oP '(?<=token=)[a-f0-9]+')"
+```
 
-Nessie UI	http://localhost:19120/api/v1/ui/
-🧰 Default Credentials
-Service	Username	Password
-Airflow	admin	admin
-MinIO	admin	password
-Postgres	airflow	airflow
-🧩 Directory Structure
+---
+
+## 🔐 Default Credentials
+
+| Service | Username | Password |
+|----------|-----------|-----------|
+| Airflow | `admin` | `admin` |
+| MinIO | `admin` | `password` |
+| Postgres | `airflow` | `airflow` |
+
+---
+
+## 🧩 Components Overview
+
+| Service | Image | Ports | Description |
+|----------|--------|--------|-------------|
+| **Airflow Webserver** | `sonusukralia/airflow-spark_asm_v1:1.0` | `8080` | UI for orchestrating Spark and data pipelines |
+| **Airflow Scheduler** | `sonusukralia/airflow-spark_asm_v1:1.0` | `—` | Executes and schedules DAGs |
+| **Spark Master** | `sonusukralia/spark_asm_v1:1.0` | `7077 , 9090` | Central Spark cluster coordinator |
+| **Spark Worker** | `sonusukralia/spark_asm_v1:1.0` | `—` | Executes Spark jobs from the master |
+| **Spark History Server** | `sonusukralia/spark_asm_v1:1.0` | `18080` | Job logs and execution history |
+| **JupyterLab** | `sonusukralia/jupyter_spark_asm_v1:1.0` | `8888 , 4040 , 4041 , 4042` | Interactive notebooks connected to Spark |
+| **MinIO** | `sonusukralia/minio_asm_v1:1.0` | `9000 , 9001` | S3-compatible object storage |
+| **MinIO Client (mc)** | `sonusukralia/minio-client_asm_v1:1.0` | `—` | Initializes MinIO buckets and policies |
+| **Postgres** | `sonusukralia/postgres_asm_v1:1.0` | `5432` | Airflow metadata database |
+| **Dremio** | `sonusukralia/dremio-oss_asm_v1:1.0` | `9047 , 31010 , 32010` | Data lakehouse query engine and UI |
+| **Nessie** | `sonusukralia/nessie_asm_v1:1.0` | `19120` | Git-like version control for data tables |
+
+---
+
+## 📂 Directory Structure
+
+```
 project-root/
 ├── dags/                # Airflow DAG definitions
 ├── jobs/                # PySpark job scripts
 ├── notebooks/           # Jupyter notebooks
 ├── docker-compose.yml   # Core Docker stack
 ├── airflow.env          # Airflow environment config
-├── Dockerfile           # Custom image build (optional)
-├── Makefile             # Helper commands
-└── docs/assets/         # Documentation or diagrams
+├── spark-events/        # Spark event logs
+├── logs/                # Airflow + Spark logs
+├── minio/               # MinIO data persistence
+├── dremio/              # Dremio metadata and storage
+├── nessie/              # Nessie catalog data
+├── postgres/            # PostgreSQL Airflow metadata DB
+└── README.md
+```
 
-Inside Directory 
-/home/sonu/data/project-root/
-├── airflow.env                    # Airflow environment configuration file
-│
-├── dags/                          # Airflow DAGs directory
-│   ├── spark_submit_example.py
-│   └── other_dag.py
-│
-├── jobs/                          # PySpark or ETL jobs executed by Airflow/Spark
-│   ├── sample_job.py
-│   └── transform_data.py
-│
-├── logs/                          # Airflow logs (scheduler, task, webserver)
-│   ├── scheduler/
-│   ├── webserver/
-│   ├── task_logs/
-│   └── ...
-│
-├── spark-events/                  # Spark event logs (used by Spark History Server)
-│   └── (generated automatically)
-│
-├── notebooks/                     # Jupyter notebooks (persistent storage)
-│   ├── data_exploration.ipynb
-│   ├── analysis.ipynb
-│   └── test_spark.ipynb
-│
-├── minio/                         # MinIO data persistence
-│   ├── warehouse/                 # Created automatically by MinIO client (mc)
-│   │   ├── datasets/
-│   │   └── checkpoints/
-│   └── .minio.sys/                # internal MinIO metadata folder (auto-created)
-│
-├── dremio/                        # Dremio metadata (users, reflections, sources)
-│   ├── db/
-│   ├── log/
-│   ├── spill/
-│   ├── scratch/
-│   └── config/
-│
-├── nessie/                        # Nessie catalog persistence (metadata version store)
-│   └── (auto-generated content)
-│
-├── postgres/                      # PostgreSQL data directory (Airflow metadata DB)
-│   ├── base/
-│   ├── global/
-│   ├── pg_wal/
-│   └── postgresql.conf
-│
-├── docker-compose.yaml            # Your main Docker Compose configuration file
-│
-└── README.md                      # Optional — notes/documentation for setup
+---
 
+## ⚙️ Permission Fix (Airflow / Dremio / MinIO)
 
-🧹 Management Commands
+If you see:
 
-Stop services:
+```
+PermissionError: [Errno 13] Permission denied: '/opt/airflow/logs/...'
+```
 
-docker-compose down
+Run this:
 
-
-Clean everything (volumes, logs, events):
-
-docker-compose down -v
-
-
-View running containers:
-
-docker ps
-
-
-Restart services:
-
-docker-compose restart
-
-🔮 Future Enhancements
-
-Integration with Apache Iceberg for table format support
-
-Add Superset / Metabase for BI visualization
-
-CI/CD with GitHub Actions for automatic DAG sync
-
-Kubernetes-based scaling using Helm or Docker Swarm
-
-
-Error details in airflow and dremio or minio
-
-PermissionError: [Errno 13] Permission denied: '/opt/airflow/logs/scheduler/2025-11-10'
-Let’s dissect and fix it properly — because this is a very common error when you mount a local folder (host path) into Airflow’s /opt/airflow/logs.
-
-⚠️ Why this happens
-When Airflow starts, it tries to create:
-
-swift
-Copy code
-/opt/airflow/logs/scheduler/YYYY-MM-DD
-But the host-mounted folder (/home/sonu/data/project-root/logs) is owned by root, while Airflow inside the container runs as user airflow (UID 50000).
-Since it can’t write logs there, it crashes while initializing the logging handler.
-
-✅ Fix Step-by-Step
-🧩 Step 1 — Identify your log volume in docker-compose.yml
-You probably have this in your airflow-webserver and airflow-scheduler sections:
-
-yaml
-Copy code
-volumes:
-  - /home/sonu/data/project-root/logs:/opt/airflow/logs
-That’s correct — but the directory needs the right permissions.
-
-🧩 Step 2 — Fix permissions on host
-Run these commands on your host (not inside container):
-
-bash
-Copy code
+```bash
 sudo chown -R 50000:50000 /home/sonu/data/project-root/logs
 sudo chmod -R 775 /home/sonu/data/project-root/logs
 sudo mkdir -p logs dremio minio postgres
 sudo chown -R 50000:50000 logs
 sudo chown -R 1000:1000 dremio
 sudo chmod -R 775 logs dremio minio postgres
-or else 
+```
+
+Or fix all recursively:
+
+```bash
 sudo chown -R 50000:50000 /home/sonu/data/project-root
 sudo chown -R 1000:1000 /home/sonu/data/project-root
+```
 
+---
 
-✅ To run the project :- 
+## 🧹 Management Commands
 
+| Command | Description |
+|----------|-------------|
+| `docker compose down` | Stop all services |
+| `docker compose down -v` | Remove volumes, logs, and events |
+| `docker compose restart` | Restart all services |
+| `docker ps` | View container status |
+
+---
+
+## 📊 Container Status Snapshot (Example)
+
+| Container Name | Image | Status | Ports |
+|----------------|--------|--------|--------|
+| `airflow-webserver` | `sonusukralia/airflow-spark_asm_v1:1.0` | 🟢 Up (healthy) | `8080->8080/tcp` |
+| `airflow-scheduler` | `sonusukralia/airflow-spark_asm_v1:1.0` | 🟢 Up | — |
+| `spark-master` | `sonusukralia/spark_asm_v1:1.0` | 🟢 Up | `7077->7077`, `9090->8080` |
+| `spark-worker` | `sonusukralia/spark_asm_v1:1.0` | 🟢 Up | — |
+| `spark-history-server` | `sonusukralia/spark_asm_v1:1.0` | 🟢 Up | `18080->18080` |
+| `jupyter-spark` | `sonusukralia/jupyter_spark_asm_v1:1.0` | 🟡 Unhealthy | `8888->8888`, `4040` |
+| `minio` | `sonusukralia/minio_asm_v1:1.0` | 🟢 Up | `9000-9001` |
+| `minio-mc` | `sonusukralia/minio-client_asm_v1:1.0` | 🟢 Up | — |
+| `postgres` | `sonusukralia/postgres_asm_v1:1.0` | 🟢 Up | `5432` |
+| `nessie` | `sonusukralia/nessie_asm_v1:1.0` | 🟢 Up | `19120` |
+| `dremio` | `sonusukralia/dremio-oss_asm_v1:1.0` | 🟢 Up | `9047, 31010, 32010` |
+
+---
+
+## 🔮 Future Enhancements
+
+- Integration with **Apache Iceberg** for advanced table formats  
+- Add **Superset / Metabase** for BI visualization  
+- **CI/CD with GitHub Actions** for automatic DAG sync  
+- **Kubernetes / Helm** deployment for scaling  
+
+---
+
+## ✅ Run the Project
+
+```bash
 docker compose -p data_platform up -d
+```
+
+Stop the entire project:
+
+```bash
 docker compose -p data_platform down
+```

@@ -5,131 +5,225 @@
 ![Issues](https://img.shields.io/github/issues/Sonu-Sukralia/airflow-spark-jupyter-minio-dremio-nessie)
 ![License](https://img.shields.io/github/license/Sonu-Sukralia/airflow-spark-jupyter-minio-dremio-nessie)
 
-Lightweight local stack for data engineering experiments and demos: Apache Airflow orchestrating Spark jobs and Jupyter notebooks, with MinIO as object storage, Dremio as query engine, and Nessie for data versioning. The repo uses Docker / docker-compose to run the services together.
+Airflow + Spark + Jupyter + MinIO + Dremio + Nessie
+Build Last Commit Issues License
 
-## Why this project
+You can copy-paste this directly into your repository’s README.md.
 
-- Reproducible local environment for building and testing ETL, data pipelines, and analytics.
-- Useful for demos, teaching, and rapid prototyping with a realistic stack.
+A fully containerized end-to-end data platform built with Docker Compose — integrating Apache Airflow, Apache Spark, MinIO, Dremio, Project Nessie, and JupyterLab into one cohesive stack.
 
-## Quick visual summary
+This environment provides a local data lakehouse, capable of ETL orchestration, distributed computation, object storage, and SQL-based analytics.
 
-```mermaid
-flowchart LR
-  subgraph LocalDocker
-    direction TB
-    Airflow[Airflow (Scheduler + Webserver)] -->|orchestrates| Spark[Spark Jobs]
-    Airflow -->|runs| Notebooks[Jupyter Notebooks]
-    Spark -->|reads/writes| MinIO[MinIO (S3 API)]
-    Notebooks -->|read/write| MinIO
-    MinIO -->|storage| Dremio[Dremio (Query Engine)]
-    Dremio -->|query| Users[Analysts / BI]
-    Spark -->|versioned data| Nessie[Nessie (Git-like lake catalog)]
-    Postgres[(Postgres metadata / Airflow DB)]
-    Airflow --> Postgres
-  end
-```
+🧩 Components Overview
+Service	Image	Ports	Description
+Airflow Webserver	sonusukralia/airflow-spark_asm:2.7.1	8080	UI for orchestrating Spark and data pipelines
+Airflow Scheduler	sonusukralia/airflow-spark_asm:2.7.1	—	Executes and schedules DAGs
+Spark Master	sonusukralia/spark_asm:3.4.0	7077, 9090	Central Spark cluster coordinator
+Spark Worker	sonusukralia/spark_asm:3.4.0	—	Executes Spark jobs from the master
+Spark History Server	sonusukralia/spark_asm:3.4.0	18080	Job logs and execution history
+JupyterLab	sonusukralia/jupyter_spark_asm:3.5	8888, 4040	Interactive notebooks connected to Spark
+MinIO	sonusukralia/minio_asm:7.0	9000, 9001	S3-compatible object storage
+MinIO Client (mc)	sonusukralia/minio-client_asm:7.0	—	Initializes MinIO buckets and policies
+Postgres	sonusukralia/postgres_asm:14.0	5432	Airflow metadata database
+Dremio	dremio/dremio-oss:latest	9047, 31010, 32010	Data lakehouse query engine and UI
+Nessie	projectnessie/nessie:0.67.0	19120	Git-like version control for data tables
+🧱 Architecture
+          ┌────────────────────────┐
+          │       Airflow           │
+          │ (Scheduler & Web UI)    │
+          └──────────┬──────────────┘
+                     │
+   ┌─────────────────┴──────────────────┐
+   │         Spark Cluster              │
+   │  (Master, Worker, History Server)  │
+   └─────────────────┬──────────────────┘
+                     │
+            ┌────────┴────────┐
+            │     MinIO       │───► Object Storage (S3)
+            └────────┬────────┘
+                     │
+            ┌────────┴────────┐
+            │     Nessie      │───► Versioned Data Catalog
+            └────────┬────────┘
+                     │
+            ┌────────┴────────┐
+            │     Dremio      │───► SQL, BI, and Data Exploration
+            └─────────────────┘
+All services are connected via the data-platform-network.
 
-This diagram is renderable on GitHub (Mermaid is supported in Markdown). Use it to show architecture at a glance.
+🧠 Live Container Status
+Below is the live snapshot from your running setup (docker ps output):
 
-## Quickstart (local)
+CONTAINER ID IMAGE STATUS PORTS 7870a97dd4e2 sonusukralia/airflow-spark_asm:2.7.1 Up (healthy) 0.0.0.0:8080->8080/tcp airflow-webserver 24142fd8984b sonusukralia/jupyter_spark_asm:3.5 Up (unhealthy) 0.0.0.0:8888->8888/tcp, 4040/tcp jupyter-spark 7f6d000284b4 sonusukralia/airflow-spark_asm:2.7.1 Up 8080/tcp airflow-scheduler 50ddbbd5e545 dremio/dremio-oss:latest Up 9047, 31010, 32010/tcp dremio 0bbb21599492 sonusukralia/minio-client_asm:7.0 Up — minio-mc 940864c427b2 sonusukralia/spark_asm:3.4.0 Up — spark-worker 848a933e2b0c sonusukralia/spark_asm:3.4.0 Up 18080/tcp spark-history-server b55d55df9781 projectnessie/nessie:0.67.0 Up 19120/tcp nessie 08a2fdc6838d sonusukralia/postgres_asm:14.0 Up 5432/tcp postgres 3988ee3e37d8 sonusukralia/spark_asm:3.4.0 Up 7077, 9090/tcp spark-master 867e625cd8d9 sonusukralia/minio_asm:7.0 Up 9000-9001/tcp minio
 
-1. Prerequisites
-   - Docker & Docker Compose installed
-   - At least ~8GB free memory to run services comfortably
+🚀 Quick Start
+Clone and start:
 
-2. Start the stack
-
-```bash
-# from the project root
+git clone https://github.com/Sonu-Sukralia/airflow-spark-jupyter-minio-dremio-nessie.git
+cd airflow-spark-jupyter-minio-dremio-nessie
 docker-compose up -d
-# if you need environment variables, the repo provides `airflow.env` — load or copy it as needed
-```
 
-3. Open the service UIs (verify ports in `docker-compose.yml`):
-- Airflow web UI — commonly http://localhost:8080
-- Jupyter — commonly http://localhost:8888
-- MinIO console — commonly http://localhost:9000
-- Dremio — commonly http://localhost:9047
 
-Check logs:
+Access services in your browser:
 
-```bash
-docker-compose logs -f airflow
-docker-compose logs -f minio
-```
+Service	URL
+Airflow UI	http://localhost:8080
 
-## What to show in the README to make it visual & attractive
+Spark Master UI	http://localhost:9090
 
-Tips to make your repo immediately more engaging for visitors:
+Spark History Server	http://localhost:18080
 
-- Hero image / banner: a single PNG/SVG at the top (e.g., `docs/assets/banner.png`) showing architecture or a screenshot of the Airflow DAG graph.
-- Badges: build status, last commit, license, open issues, Docker image pulls. Use shields.io with your repo path.
-- Animated GIF demo: record a short (5–10s) GIF that shows starting the stack and opening the Airflow DAG UI or a notebook running. Place under `docs/assets/gifs/` and embed with `![demo](docs/assets/gifs/demo.gif)`.
-- Screenshots: Airflow DAG, Task Instance logs, Jupyter notebook outputs, Dremio dataset preview. Put in `docs/assets/screenshots/` and reference them.
-- Architecture diagram (Mermaid or SVG): Mermaid diagrams render in GitHub README. For polished visuals prefer an SVG exported from draw.io or diagrams.net.
-- Notebook thumbnails: export important notebook outputs (plots, tables) as PNGs and show next to a short example.
-- Quick examples: small code snippets and a “Try it” section with one or two commands that run a sample DAG or notebook.
+JupyterLab	http://localhost:8888
+For token :- docker logs jupyter-spark | grep token=
+and :- echo "http://localhost:8888/?token=$(docker exec jupyter-spark jupyter notebook list | grep -oP '(?<=token=)[a-f0-9]+')"
 
-## How to capture visuals
+MinIO Console	http://localhost:9001
 
-- GIFs: use Peek (Linux) or by recording with `asciinema` for terminal demos and convert with `svg-term-cli` or `gifine`/`byzanz`/`ffmpeg`.
-- Screenshots: use your OS screenshot tool or `scrot` on Linux. Save at `docs/assets/screenshots/`.
-- Diagrams: use draw.io / diagrams.net and export to SVG or PNG (SVG is crisp on GitHub).
+Dremio UI	http://localhost:9047
 
-## Example README snippets for embedding assets
-
-Add a hero image:
-
-```md
-![Project banner](docs/assets/banner.png)
-```
-
-Add a GIF demo:
-
-```md
-![Quick demo of Airflow DAG running](docs/assets/gifs/airflow-demo.gif)
-```
-
-Add a screenshot grid:
-
-```md
-### Screenshots
-
-| Airflow DAG | Jupyter Notebook | MinIO Console |
-|---|---|---|
-| ![airflow](docs/assets/screenshots/airflow.png) | ![notebook](docs/assets/screenshots/notebook.png) | ![minio](docs/assets/screenshots/minio.png) |
-```
-
-## Folder layout (short)
-
-```
+Nessie UI	http://localhost:19120/api/v1/ui/
+🧰 Default Credentials
+Service	Username	Password
+Airflow	admin	admin
+MinIO	admin	password
+Postgres	airflow	airflow
+🧩 Directory Structure
 project-root/
-  ├─ dags/                # Airflow DAGs
-  ├─ jobs/                # helper scripts and sample jobs
-  ├─ docker-compose.yml   # starts the stack
-  ├─ Dockerfile           # custom images
-  ├─ notebooks/           # example notebooks
-  └─ docs/assets/         # screenshots, gifs, diagrams (create this)
-```
+├── dags/                # Airflow DAG definitions
+├── jobs/                # PySpark job scripts
+├── notebooks/           # Jupyter notebooks
+├── docker-compose.yml   # Core Docker stack
+├── airflow.env          # Airflow environment config
+├── Dockerfile           # Custom image build (optional)
+├── Makefile             # Helper commands
+└── docs/assets/         # Documentation or diagrams
 
-## Contributing & next steps
+Inside Directory 
+/home/sonu/data/project-root/
+├── airflow.env                    # Airflow environment configuration file
+│
+├── dags/                          # Airflow DAGs directory
+│   ├── spark_submit_example.py
+│   └── other_dag.py
+│
+├── jobs/                          # PySpark or ETL jobs executed by Airflow/Spark
+│   ├── sample_job.py
+│   └── transform_data.py
+│
+├── logs/                          # Airflow logs (scheduler, task, webserver)
+│   ├── scheduler/
+│   ├── webserver/
+│   ├── task_logs/
+│   └── ...
+│
+├── spark-events/                  # Spark event logs (used by Spark History Server)
+│   └── (generated automatically)
+│
+├── notebooks/                     # Jupyter notebooks (persistent storage)
+│   ├── data_exploration.ipynb
+│   ├── analysis.ipynb
+│   └── test_spark.ipynb
+│
+├── minio/                         # MinIO data persistence
+│   ├── warehouse/                 # Created automatically by MinIO client (mc)
+│   │   ├── datasets/
+│   │   └── checkpoints/
+│   └── .minio.sys/                # internal MinIO metadata folder (auto-created)
+│
+├── dremio/                        # Dremio metadata (users, reflections, sources)
+│   ├── db/
+│   ├── log/
+│   ├── spill/
+│   ├── scratch/
+│   └── config/
+│
+├── nessie/                        # Nessie catalog persistence (metadata version store)
+│   └── (auto-generated content)
+│
+├── postgres/                      # PostgreSQL data directory (Airflow metadata DB)
+│   ├── base/
+│   ├── global/
+│   ├── pg_wal/
+│   └── postgresql.conf
+│
+├── docker-compose.yaml            # Your main Docker Compose configuration file
+│
+└── README.md                      # Optional — notes/documentation for setup
 
-- Add `docs/assets/` and commit screenshots/GIFs
-- Add a `CONTRIBUTING.md` with how to run and how to add new DAGs
-- Add GitHub Actions workflow to test builds and run linting (CI badge in README)
-- Consider publishing docs to GitHub Pages or MkDocs for a richer, browsable site
 
-## License
+🧹 Management Commands
 
-Add a `LICENSE` file at the repo root or replace this section with your license of choice.
+Stop services:
 
----
+docker-compose down
 
-If you'd like, I can:
 
-1. Create the `docs/assets/` directories and add placeholder files.
-2. Commit a hero banner template and an example GIF placeholder.
-3. Add a short GitHub Actions CI example (workflow) and include the resultant badge in README.
+Clean everything (volumes, logs, events):
 
-Tell me which of these you'd like me to do next and I will proceed.
+docker-compose down -v
+
+
+View running containers:
+
+docker ps
+
+
+Restart services:
+
+docker-compose restart
+
+🔮 Future Enhancements
+
+Integration with Apache Iceberg for table format support
+
+Add Superset / Metabase for BI visualization
+
+CI/CD with GitHub Actions for automatic DAG sync
+
+Kubernetes-based scaling using Helm or Docker Swarm
+
+
+Error details in airflow and dremio or minio
+
+PermissionError: [Errno 13] Permission denied: '/opt/airflow/logs/scheduler/2025-11-10'
+Let’s dissect and fix it properly — because this is a very common error when you mount a local folder (host path) into Airflow’s /opt/airflow/logs.
+
+⚠️ Why this happens
+When Airflow starts, it tries to create:
+
+swift
+Copy code
+/opt/airflow/logs/scheduler/YYYY-MM-DD
+But the host-mounted folder (/home/sonu/data/project-root/logs) is owned by root, while Airflow inside the container runs as user airflow (UID 50000).
+Since it can’t write logs there, it crashes while initializing the logging handler.
+
+✅ Fix Step-by-Step
+🧩 Step 1 — Identify your log volume in docker-compose.yml
+You probably have this in your airflow-webserver and airflow-scheduler sections:
+
+yaml
+Copy code
+volumes:
+  - /home/sonu/data/project-root/logs:/opt/airflow/logs
+That’s correct — but the directory needs the right permissions.
+
+🧩 Step 2 — Fix permissions on host
+Run these commands on your host (not inside container):
+
+bash
+Copy code
+sudo chown -R 50000:50000 /home/sonu/data/project-root/logs
+sudo chmod -R 775 /home/sonu/data/project-root/logs
+sudo mkdir -p logs dremio minio postgres
+sudo chown -R 50000:50000 logs
+sudo chown -R 1000:1000 dremio
+sudo chmod -R 775 logs dremio minio postgres
+or else 
+sudo chown -R 50000:50000 /home/sonu/data/project-root
+sudo chown -R 1000:1000 /home/sonu/data/project-root
+
+
+✅ To run the project :- 
+
+docker compose -p data_platform up -d
+docker compose -p data_platform down

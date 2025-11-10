@@ -1,0 +1,447 @@
+# version: '3.9'
+
+# =================== COMMON CONFIGURATIONS ===================
+x-spark-common: &spark-common
+  image: sonusukralia/spark_asm:3.4.0
+  volumes:
+    - ./jobs:/opt/bitnami/spark/jobs
+  networks:
+    - data-platform-network
+  environment:
+    - SPARK_RPC_AUTHENTICATION_ENABLED=no
+    - SPARK_RPC_ENCRYPTION_ENABLED=no
+    - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+    - SPARK_SSL_ENABLED=no
+    - SPARK_USER=root
+    - PYSPARK_PYTHON=/opt/bitnami/python/bin/python3
+    - SPARK_EVENTLOG_ENABLED=true
+    - SPARK_EVENTLOG_DIR=/opt/spark-events
+  restart: unless-stopped
+
+x-airflow-common: &airflow-common
+  image: sonusukralia/airflow-spark_asm:2.7.1
+  env_file:
+    - airflow.env
+  volumes:
+    - ./jobs:/opt/airflow/jobs
+    - ./dags:/opt/airflow/dags
+    - ./logs:/opt/airflow/logs
+  depends_on:
+    - postgres
+  networks:
+    - data-platform-network
+  restart: unless-stopped
+
+# =================== SERVICES ===================
+services:
+  # ---------- Spark Master ----------
+  spark-master:
+    <<: *spark-common
+    container_name: spark-master
+    command: bin/spark-class org.apache.spark.deploy.master.Master
+    ports:
+      - "9090:8080"
+      - "7077:7077"
+
+  # ---------- Spark Worker ----------
+  spark-worker:
+    <<: *spark-common
+    container_name: spark-worker
+    command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+    depends_on:
+      - spark-master
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_WORKER_CORES=4
+      - SPARK_WORKER_MEMORY=4g
+      - SPARK_MASTER_URL=spark://spark-master:7077
+
+  # ---------- Spark History Server ----------
+  spark-history-server:
+    <<: *spark-common
+    container_name: spark-history-server
+    command: bin/spark-class org.apache.spark.deploy.history.HistoryServer
+    ports:
+      - "18080:18080"
+    volumes:
+      - ./spark-events:/opt/spark-events
+    environment:
+      - SPARK_HISTORY_OPTS=-Dspark.history.fs.logDirectory=/opt/spark-events
+    depends_on:
+      - spark-master
+
+  # ---------- Postgres (Airflow Metadata DB) ----------
+  postgres:
+    image: sonusukralia/postgres_asm:14.0
+    container_name: postgres
+    environment:
+      - POSTGRES_USER=airflow
+      - POSTGRES_PASSWORD=airflow
+      - POSTGRES_DB=airflow
+    ports:
+      - "5432:5432"
+    networks:
+      - data-platform-network
+    restart: unless-stopped
+    volumes:
+      # === Persistent storage for Airflow metadata DB ===
+      - /home/sonu/data/project-root/postgres:/var/lib/postgresql/data
+      # ==================================================
+
+  # ---------- Airflow Scheduler ----------
+  scheduler:
+    <<: *airflow-common
+    container_name: airflow-scheduler
+    command: >
+      bash -c "
+      airflow db migrate &&
+      airflow users create --username admin --firstname Sonu --lastname Kumar --role Admin --email admin@example.com --password admin &&
+      airflow scheduler
+      "
+
+  # ---------- Airflow Webserver ----------
+  webserver:
+    <<: *airflow-common
+    container_name: airflow-webserver
+    command: webserver
+    ports:
+      - "8080:8080"
+    depends_on:
+      - scheduler
+
+  # ---------- MinIO (Object Storage) ----------
+  minio:
+    image: sonusukralia/minio_asm:7.0
+    container_name: minio
+    environment:
+      - MINIO_ROOT_USER=admin
+      - MINIO_ROOT_PASSWORD=password
+      - MINIO_REGION_NAME=us-east-1
+      - MINIO_REGION=us-east-1
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    command: ["server", "/data", "--console-address", ":9001"]
+    networks:
+      - data-platform-network
+    restart: unless-stopped
+    volumes:
+      # === Persistent storage for MinIO data (prevents data loss on restart) ===
+      - /home/sonu/data/project-root/minio:/data
+      # =======================================================================
+
+  # ---------- MinIO Client (Auto Bucket Setup) ----------
+
+
+  mc:
+    image: sonusukralia/minio-client_asm:7.0
+    container_name: minio-mc
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      echo 'Waiting for MinIO service to become ready...';
+      until nc -z minio 9000; do
+        echo '...waiting for MinIO port 9000...';
+        sleep 2;
+      done;
+      echo 'MinIO port is open, giving extra time for storage initialization...';
+      sleep 10;
+      echo 'Connecting MinIO client...';
+      /usr/bin/mc alias set minio http://minio:9000 admin password;
+      /usr/bin/mc mb minio/warehouse || true;
+      /usr/bin/mc policy set public minio/warehouse;
+      echo '✅ MinIO client setup completed successfully.';
+      tail -f /dev/null;
+      "
+    networks:
+      - data-platform-network
+    restart: unless-stopped
+
+
+
+
+  # ---------- Jupyter + Spark Notebook ----------
+  jupyter-spark:
+    image: sonusukralia/jupyter_spark_asm:3.5
+    container_name: jupyter-spark
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+      - SPARK_HOME=/opt/spark
+      - PYSPARK_PYTHON=python3
+      - PYSPARK_DRIVER_PYTHON=jupyter
+      - PYSPARK_DRIVER_PYTHON_OPTS=lab
+      - SPARK_MASTER=spark://spark-master:7077
+      - SPARK_EVENTLOG_ENABLED=true
+      - SPARK_EVENTLOG_DIR=/opt/spark-events
+    ports:
+      - "8888:8888"
+      - "4040:4040"
+    volumes:
+      # === Persistent notebooks storage for Jupyter ===
+      - /home/sonu/data/project-root/notebooks:/home/jovyan
+      # =================================================
+      - ./spark-events:/opt/spark-events
+    depends_on:
+      - spark-master
+      - minio
+      - postgres
+    networks:
+      - data-platform-network
+    restart: unless-stopped
+
+  # ---------- Nessie Catalog ----------
+  nessie:
+    image: projectnessie/nessie:0.67.0
+    container_name: nessie
+    ports:
+      - "19120:19120"
+    networks:
+      - data-platform-network
+    restart: unless-stopped
+    volumes:
+      # === Persistent storage for Nessie catalog data ===
+      - /home/sonu/data/project-root/nessie:/nessie
+      # ================================================
+
+  # ---------- Dremio ----------
+  dremio:
+    platform: linux/x86_64
+    image: dremio/dremio-oss:latest
+    container_name: dremio
+    user: "0:0"   # ✅ ensures /opt/dremio/data writable even with mounted host dir
+    ports:
+      - "9047:9047"
+      - "31010:31010"
+      - "32010:32010"
+    networks:
+      - data-platform-network
+    depends_on:
+      - nessie
+      - minio
+    restart: unless-stopped
+    volumes:
+      # === Persistent storage for Dremio metadata, users, and sources ===
+      - /home/sonu/data/project-root/dremio:/opt/dremio/data
+      # =================================================================
+
+# =================== NETWORKS ===================
+networks:
+  data-platform-network:
+    driver: bridge
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# # version: '3.9'
+
+# # =================== COMMON CONFIGURATIONS ===================
+# x-spark-common: &spark-common
+#   image: sonusukralia/spark_asm:3.4.0
+#   volumes:
+#     - ./jobs:/opt/bitnami/spark/jobs
+#   networks:
+#     - data-platform-network
+#   environment:
+#     - SPARK_RPC_AUTHENTICATION_ENABLED=no
+#     - SPARK_RPC_ENCRYPTION_ENABLED=no
+#     - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+#     - SPARK_SSL_ENABLED=no
+#     - SPARK_USER=root
+#     - PYSPARK_PYTHON=/opt/bitnami/python/bin/python3
+#     - SPARK_EVENTLOG_ENABLED=true
+#     - SPARK_EVENTLOG_DIR=/opt/spark-events
+#   restart: unless-stopped
+
+# x-airflow-common: &airflow-common
+#   image: sonusukralia/airflow-spark_asm:2.7.1
+#   env_file:
+#     - airflow.env
+#   volumes:
+#     - ./jobs:/opt/airflow/jobs
+#     - ./dags:/opt/airflow/dags
+#     - ./logs:/opt/airflow/logs
+#   depends_on:
+#     - postgres
+#   networks:
+#     - data-platform-network
+#   restart: unless-stopped
+
+# # =================== SERVICES ===================
+# services:
+#   # ---------- Spark Master ----------
+#   spark-master:
+#     <<: *spark-common
+#     container_name: spark-master
+#     command: bin/spark-class org.apache.spark.deploy.master.Master
+#     ports:
+#       - "9090:8080"
+#       - "7077:7077"
+
+#   # ---------- Spark Worker ----------
+#   spark-worker:
+#     <<: *spark-common
+#     container_name: spark-worker
+#     command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+#     depends_on:
+#       - spark-master
+#     environment:
+#       - SPARK_MODE=worker
+#       - SPARK_WORKER_CORES=4
+#       - SPARK_WORKER_MEMORY=4g
+#       - SPARK_MASTER_URL=spark://spark-master:7077
+
+#   # ---------- Spark History Server ----------
+#   spark-history-server:
+#     <<: *spark-common
+#     container_name: spark-history-server
+#     command: bin/spark-class org.apache.spark.deploy.history.HistoryServer
+#     ports:
+#       - "18080:18080"
+#     volumes:
+#       - ./spark-events:/opt/spark-events
+#     environment:
+#       - SPARK_HISTORY_OPTS=-Dspark.history.fs.logDirectory=/opt/spark-events
+#     depends_on:
+#       - spark-master
+
+#   # ---------- Postgres (Airflow Metadata DB) ----------
+#   postgres:
+#     image: sonusukralia/postgres_asm:14.0
+#     container_name: postgres
+#     environment:
+#       - POSTGRES_USER=airflow
+#       - POSTGRES_PASSWORD=airflow
+#       - POSTGRES_DB=airflow
+#     ports:
+#       - "5432:5432"
+#     networks:
+#       - data-platform-network
+
+#   # ---------- Airflow Scheduler ----------
+#   scheduler:
+#     <<: *airflow-common
+#     container_name: airflow-scheduler
+#     command: >
+#       bash -c "
+#       airflow db migrate &&
+#       airflow users create --username admin --firstname Sonu --lastname Kumar --role Admin --email admin@example.com --password admin &&
+#       airflow scheduler
+#       "
+
+#   # ---------- Airflow Webserver ----------
+#   webserver:
+#     <<: *airflow-common
+#     container_name: airflow-webserver
+#     command: webserver
+#     ports:
+#       - "8080:8080"
+#     depends_on:
+#       - scheduler
+
+#   # ---------- MinIO (Object Storage) ----------
+#   minio:
+#     image: sonusukralia/minio_asm:7.0
+#     container_name: minio
+#     environment:
+#       - MINIO_ROOT_USER=admin
+#       - MINIO_ROOT_PASSWORD=password
+#       - MINIO_REGION_NAME=us-east-1
+#       - MINIO_REGION=us-east-1
+#     ports:
+#       - "9000:9000"
+#       - "9001:9001"
+#     command: ["server", "/data", "--console-address", ":9001"]
+#     networks:
+#       - data-platform-network
+
+#   # ---------- MinIO Client (Auto Bucket Setup) ----------
+#   mc:
+#     image: sonusukralia/minio-client_asm:7.0
+#     container_name: minio-mc
+#     depends_on:
+#       - minio
+#     entrypoint: >
+#       /bin/sh -c "
+#       until (/usr/bin/mc alias set minio http://minio:9000 admin password) do echo '...waiting for MinIO...' && sleep 1; done;
+#       /usr/bin/mc rm -r --force minio/warehouse;
+#       /usr/bin/mc mb minio/warehouse;
+#       /usr/bin/mc policy set public minio/warehouse;
+#       tail -f /dev/null
+#       "
+#     networks:
+#       - data-platform-network
+
+#   # ---------- Jupyter + Spark Notebook ----------
+#   jupyter-spark:
+#     image: sonusukralia/jupyter_spark_asm:3.5
+#     container_name: jupyter-spark
+#     environment:
+#       - JUPYTER_ENABLE_LAB=yes
+#       - SPARK_HOME=/opt/spark
+#       - PYSPARK_PYTHON=python3
+#       - PYSPARK_DRIVER_PYTHON=jupyter
+#       - PYSPARK_DRIVER_PYTHON_OPTS=lab
+#       - SPARK_MASTER=spark://spark-master:7077
+#       - SPARK_EVENTLOG_ENABLED=true
+#       - SPARK_EVENTLOG_DIR=/opt/spark-events
+#     ports:
+#       - "8888:8888"
+#       - "4040:4040"
+#     volumes:
+#       # === Added volume mapping to connect Jupyter home with host path ===
+#       - /home/sonu/data/project-root/notebooks:/home/jovyan
+#       # ================================================================
+#       - ./spark-events:/opt/spark-events
+#     depends_on:
+#       - spark-master
+#       - minio
+#       - postgres
+#     networks:
+#       - data-platform-network
+#     restart: unless-stopped
+
+#   # ---------- Nessie Catalog ----------
+#   nessie:
+#     image: projectnessie/nessie:0.67.0
+#     container_name: nessie
+#     ports:
+#       - "19120:19120"
+#     networks:
+#       - data-platform-network
+
+#   # ---------- Dremio ----------
+#   dremio:
+#     platform: linux/x86_64
+#     image: dremio/dremio-oss:latest
+#     container_name: dremio
+#     ports:
+#       - "9047:9047"
+#       - "31010:31010"
+#       - "32010:32010"
+#     networks:
+#       - data-platform-network
+#     depends_on:
+#       - nessie
+#       - minio
+
+# # =================== NETWORKS ===================
+# networks:
+#   data-platform-network:
+#     driver: bridge

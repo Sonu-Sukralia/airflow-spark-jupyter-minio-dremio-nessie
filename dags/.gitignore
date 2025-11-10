@@ -1,0 +1,25 @@
+# Ignore container volumes and runtime data
+postgres/
+# dremio/
+# minio/
+# nessie/
+# spark-events/
+# logs/
+
+
+# Ignore Jupyter temp files
+notebooks/.local/
+notebooks/.ipynb_checkpoints/
+notebooks/.cache/
+
+# Ignore compiled Python files
+__pycache__/
+*.pyc
+*.pyo
+
+
+
+# Ignore OS and editor files
+.vscode/
+.idea/
+.DS_Store

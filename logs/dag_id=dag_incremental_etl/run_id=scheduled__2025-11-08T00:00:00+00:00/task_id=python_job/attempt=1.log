@@ -1,0 +1,399 @@
+[2025-11-09T15:10:51.735+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_incremental_etl.python_job scheduled__2025-11-08T00:00:00+00:00 [queued]>
+[2025-11-09T15:10:51.745+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_incremental_etl.python_job scheduled__2025-11-08T00:00:00+00:00 [queued]>
+[2025-11-09T15:10:51.746+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 1
+[2025-11-09T15:10:51.757+0000] {taskinstance.py:1380} INFO - Executing <Task(SparkSubmitOperator): python_job> on 2025-11-08 00:00:00+00:00
+[2025-11-09T15:10:51.762+0000] {standard_task_runner.py:57} INFO - Started process 426 to run task
+[2025-11-09T15:10:51.764+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'dag_incremental_etl', 'python_job', 'scheduled__2025-11-08T00:00:00+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/minio.py', '--cfg-path', '/tmp/tmp2dykqcoi']
+[2025-11-09T15:10:51.765+0000] {standard_task_runner.py:85} INFO - Job 5: Subtask python_job
+[2025-11-09T15:10:51.815+0000] {task_command.py:415} INFO - Running <TaskInstance: dag_incremental_etl.python_job scheduled__2025-11-08T00:00:00+00:00 [running]> on host 863c17993851
+[2025-11-09T15:10:51.893+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Soumil Shah' AIRFLOW_CTX_DAG_ID='dag_incremental_etl' AIRFLOW_CTX_TASK_ID='python_job' AIRFLOW_CTX_EXECUTION_DATE='2025-11-08T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-11-08T00:00:00+00:00'
+[2025-11-09T15:10:51.903+0000] {base.py:73} INFO - Using connection ID 'spark-conn' for task execution.
+[2025-11-09T15:10:51.904+0000] {spark_submit.py:403} INFO - Spark-Submit cmd: spark-submit --master spark://spark-master:7077 --conf spark.driver.memory=1g --conf spark.executor.memory=1g --conf spark.executor.instances=1 --packages org.apache.hudi:hudi-spark3.4-bundle_2.12:0.14.0,org.apache.hadoop:hadoop-aws:3.3.2 --name arrow-spark --deploy-mode client jobs/minio.py
+[2025-11-09T15:10:52.103+0000] {spark_submit.py:579} INFO - /home/***/.local/lib/python3.9/site-packages/pyspark/bin/load-spark-env.sh: line 68: ps: command not found
+[2025-11-09T15:10:55.110+0000] {spark_submit.py:579} INFO - :: loading settings :: url = jar:file:/home/***/.local/lib/python3.9/site-packages/pyspark/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml
+[2025-11-09T15:10:55.292+0000] {spark_submit.py:579} INFO - Ivy Default Cache set to: /home/***/.ivy2/cache
+[2025-11-09T15:10:55.293+0000] {spark_submit.py:579} INFO - The jars for the packages stored in: /home/***/.ivy2/jars
+[2025-11-09T15:10:55.296+0000] {spark_submit.py:579} INFO - org.apache.hudi#hudi-spark3.4-bundle_2.12 added as a dependency
+[2025-11-09T15:10:55.297+0000] {spark_submit.py:579} INFO - org.apache.hadoop#hadoop-aws added as a dependency
+[2025-11-09T15:10:55.297+0000] {spark_submit.py:579} INFO - :: resolving dependencies :: org.apache.spark#spark-submit-parent-47c18454-be33-4eba-b963-4b9104e0e834;1.0
+[2025-11-09T15:10:55.297+0000] {spark_submit.py:579} INFO - confs: [default]
+[2025-11-09T15:10:57.769+0000] {spark_submit.py:579} INFO - found org.apache.hudi#hudi-spark3.4-bundle_2.12;0.14.0 in central
+[2025-11-09T15:10:59.702+0000] {spark_submit.py:579} INFO - found org.apache.hadoop#hadoop-aws;3.3.2 in central
+[2025-11-09T15:11:00.775+0000] {spark_submit.py:579} INFO - found com.amazonaws#aws-java-sdk-bundle;1.11.1026 in central
+[2025-11-09T15:11:02.874+0000] {spark_submit.py:579} INFO - found org.wildfly.openssl#wildfly-openssl;1.0.7.Final in central
+[2025-11-09T15:11:02.914+0000] {spark_submit.py:579} INFO - downloading https://repo1.maven.org/maven2/org/apache/hudi/hudi-spark3.4-bundle_2.12/0.14.0/hudi-spark3.4-bundle_2.12-0.14.0.jar ...
+[2025-11-09T15:12:00.956+0000] {spark_submit.py:579} INFO - downloading https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.11.1026/aws-java-sdk-bundle-1.11.1026.jar ...
+[2025-11-09T15:13:55.864+0000] {spark_submit.py:579} INFO - :: resolution report :: resolve 7584ms :: artifacts dl 172983ms
+[2025-11-09T15:13:55.866+0000] {spark_submit.py:579} INFO - :: modules in use:
+[2025-11-09T15:13:55.866+0000] {spark_submit.py:579} INFO - com.amazonaws#aws-java-sdk-bundle;1.11.1026 from central in [default]
+[2025-11-09T15:13:55.867+0000] {spark_submit.py:579} INFO - org.apache.hadoop#hadoop-aws;3.3.2 from central in [default]
+[2025-11-09T15:13:55.867+0000] {spark_submit.py:579} INFO - org.apache.hudi#hudi-spark3.4-bundle_2.12;0.14.0 from central in [default]
+[2025-11-09T15:13:55.867+0000] {spark_submit.py:579} INFO - org.wildfly.openssl#wildfly-openssl;1.0.7.Final from central in [default]
+[2025-11-09T15:13:55.867+0000] {spark_submit.py:579} INFO - ---------------------------------------------------------------------
+[2025-11-09T15:13:55.867+0000] {spark_submit.py:579} INFO - |                  |            modules            ||   artifacts   |
+[2025-11-09T15:13:55.867+0000] {spark_submit.py:579} INFO - |       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+[2025-11-09T15:13:55.867+0000] {spark_submit.py:579} INFO - ---------------------------------------------------------------------
+[2025-11-09T15:13:55.867+0000] {spark_submit.py:579} INFO - |      default     |   4   |   4   |   4   |   0   ||   4   |   0   |
+[2025-11-09T15:13:55.867+0000] {spark_submit.py:579} INFO - ---------------------------------------------------------------------
+[2025-11-09T15:13:55.869+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T15:13:55.870+0000] {spark_submit.py:579} INFO - :: problems summary ::
+[2025-11-09T15:13:55.871+0000] {spark_submit.py:579} INFO - :::: WARNINGS
+[2025-11-09T15:13:55.871+0000] {spark_submit.py:579} INFO - [FAILED     ] org.apache.hudi#hudi-spark3.4-bundle_2.12;0.14.0!hudi-spark3.4-bundle_2.12.jar: Downloaded file size (0) doesn't match expected Content Length (104998438) for https://repo1.maven.org/maven2/org/apache/hudi/hudi-spark3.4-bundle_2.12/0.14.0/hudi-spark3.4-bundle_2.12-0.14.0.jar. Please retry. (58030ms)
+[2025-11-09T15:13:55.872+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T15:13:55.872+0000] {spark_submit.py:579} INFO - [FAILED     ] org.apache.hudi#hudi-spark3.4-bundle_2.12;0.14.0!hudi-spark3.4-bundle_2.12.jar: Downloaded file size (0) doesn't match expected Content Length (104998438) for https://repo1.maven.org/maven2/org/apache/hudi/hudi-spark3.4-bundle_2.12/0.14.0/hudi-spark3.4-bundle_2.12-0.14.0.jar. Please retry. (58030ms)
+[2025-11-09T15:13:55.873+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T15:13:55.873+0000] {spark_submit.py:579} INFO - ==== central: tried
+[2025-11-09T15:13:55.873+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T15:13:55.873+0000] {spark_submit.py:579} INFO - https://repo1.maven.org/maven2/org/apache/hudi/hudi-spark3.4-bundle_2.12/0.14.0/hudi-spark3.4-bundle_2.12-0.14.0.jar
+[2025-11-09T15:13:55.874+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T15:13:55.874+0000] {spark_submit.py:579} INFO - [FAILED     ] com.amazonaws#aws-java-sdk-bundle;1.11.1026!aws-java-sdk-bundle.jar: Downloaded file size (0) doesn't match expected Content Length (226379782) for https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.11.1026/aws-java-sdk-bundle-1.11.1026.jar. Please retry. (114946ms)
+[2025-11-09T15:13:55.874+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T15:13:55.874+0000] {spark_submit.py:579} INFO - [FAILED     ] com.amazonaws#aws-java-sdk-bundle;1.11.1026!aws-java-sdk-bundle.jar: Downloaded file size (0) doesn't match expected Content Length (226379782) for https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.11.1026/aws-java-sdk-bundle-1.11.1026.jar. Please retry. (114946ms)
+[2025-11-09T15:13:55.874+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T15:13:55.874+0000] {spark_submit.py:579} INFO - ==== central: tried
+[2025-11-09T15:13:55.874+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T15:13:55.874+0000] {spark_submit.py:579} INFO - https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.11.1026/aws-java-sdk-bundle-1.11.1026.jar
+[2025-11-09T15:13:55.875+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T15:13:55.875+0000] {spark_submit.py:579} INFO - ::::::::::::::::::::::::::::::::::::::::::::::
+[2025-11-09T15:13:55.875+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T15:13:55.875+0000] {spark_submit.py:579} INFO - ::              FAILED DOWNLOADS            ::
+[2025-11-09T15:13:55.876+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T15:13:55.876+0000] {spark_submit.py:579} INFO - :: ^ see resolution messages for details  ^ ::
+[2025-11-09T15:13:55.876+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T15:13:55.876+0000] {spark_submit.py:579} INFO - ::::::::::::::::::::::::::::::::::::::::::::::
+[2025-11-09T15:13:55.877+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T15:13:55.877+0000] {spark_submit.py:579} INFO - :: org.apache.hudi#hudi-spark3.4-bundle_2.12;0.14.0!hudi-spark3.4-bundle_2.12.jar
+[2025-11-09T15:13:55.877+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T15:13:55.877+0000] {spark_submit.py:579} INFO - :: com.amazonaws#aws-java-sdk-bundle;1.11.1026!aws-java-sdk-bundle.jar
+[2025-11-09T15:13:55.877+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T15:13:55.877+0000] {spark_submit.py:579} INFO - ::::::::::::::::::::::::::::::::::::::::::::::
+[2025-11-09T15:13:55.877+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T15:13:55.877+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T15:13:55.877+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T15:13:55.877+0000] {spark_submit.py:579} INFO - :: USE VERBOSE OR DEBUG MESSAGE LEVEL FOR MORE DETAILS
+[2025-11-09T15:13:55.877+0000] {spark_submit.py:579} INFO - Exception in thread "main" java.lang.RuntimeException: [download failed: org.apache.hudi#hudi-spark3.4-bundle_2.12;0.14.0!hudi-spark3.4-bundle_2.12.jar, download failed: com.amazonaws#aws-java-sdk-bundle;1.11.1026!aws-java-sdk-bundle.jar]
+[2025-11-09T15:13:55.878+0000] {spark_submit.py:579} INFO - at org.apache.spark.deploy.SparkSubmitUtils$.resolveMavenCoordinates(SparkSubmit.scala:1528)
+[2025-11-09T15:13:55.878+0000] {spark_submit.py:579} INFO - at org.apache.spark.util.DependencyUtils$.resolveMavenDependencies(DependencyUtils.scala:185)
+[2025-11-09T15:13:55.878+0000] {spark_submit.py:579} INFO - at org.apache.spark.deploy.SparkSubmit.prepareSubmitEnvironment(SparkSubmit.scala:332)
+[2025-11-09T15:13:55.878+0000] {spark_submit.py:579} INFO - at org.apache.spark.deploy.SparkSubmit.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:955)
+[2025-11-09T15:13:55.878+0000] {spark_submit.py:579} INFO - at org.apache.spark.deploy.SparkSubmit.doRunMain$1(SparkSubmit.scala:192)
+[2025-11-09T15:13:55.878+0000] {spark_submit.py:579} INFO - at org.apache.spark.deploy.SparkSubmit.submit(SparkSubmit.scala:215)
+[2025-11-09T15:13:55.878+0000] {spark_submit.py:579} INFO - at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:91)
+[2025-11-09T15:13:55.878+0000] {spark_submit.py:579} INFO - at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:1111)
+[2025-11-09T15:13:55.878+0000] {spark_submit.py:579} INFO - at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:1120)
+[2025-11-09T15:13:55.878+0000] {spark_submit.py:579} INFO - at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+[2025-11-09T15:13:55.947+0000] {taskinstance.py:1935} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/providers/apache/spark/operators/spark_submit.py", line 174, in execute
+    self._hook.submit(self.application)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/providers/apache/spark/hooks/spark_submit.py", line 505, in submit
+    raise AirflowException(
+airflow.exceptions.AirflowException: Cannot execute: spark-submit --master spark://spark-master:7077 --conf spark.driver.memory=1g --conf spark.executor.memory=1g --conf spark.executor.instances=1 --packages org.apache.hudi:hudi-spark3.4-bundle_2.12:0.14.0,org.apache.hadoop:hadoop-aws:3.3.2 --name arrow-spark --deploy-mode client jobs/minio.py. Error code is: 1.
+[2025-11-09T15:13:55.953+0000] {taskinstance.py:1398} INFO - Marking task as FAILED. dag_id=dag_incremental_etl, task_id=python_job, execution_date=20251108T000000, start_date=20251109T151051, end_date=20251109T151355
+[2025-11-09T15:13:55.977+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 5 for task python_job (Cannot execute: spark-submit --master spark://spark-master:7077 --conf spark.driver.memory=1g --conf spark.executor.memory=1g --conf spark.executor.instances=1 --packages org.apache.hudi:hudi-spark3.4-bundle_2.12:0.14.0,org.apache.hadoop:hadoop-aws:3.3.2 --name arrow-spark --deploy-mode client jobs/minio.py. Error code is: 1.; 426)
+[2025-11-09T15:13:55.997+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2025-11-09T15:13:56.021+0000] {taskinstance.py:2776} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-11-09T18:27:13.018+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_incremental_etl.python_job scheduled__2025-11-08T00:00:00+00:00 [queued]>
+[2025-11-09T18:27:13.025+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_incremental_etl.python_job scheduled__2025-11-08T00:00:00+00:00 [queued]>
+[2025-11-09T18:27:13.025+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 1
+[2025-11-09T18:27:13.035+0000] {taskinstance.py:1380} INFO - Executing <Task(SparkSubmitOperator): python_job> on 2025-11-08 00:00:00+00:00
+[2025-11-09T18:27:13.040+0000] {standard_task_runner.py:57} INFO - Started process 851 to run task
+[2025-11-09T18:27:13.042+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'dag_incremental_etl', 'python_job', 'scheduled__2025-11-08T00:00:00+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/minio.py', '--cfg-path', '/tmp/tmpu_w2acrn']
+[2025-11-09T18:27:13.044+0000] {standard_task_runner.py:85} INFO - Job 5: Subtask python_job
+[2025-11-09T18:27:13.296+0000] {task_command.py:415} INFO - Running <TaskInstance: dag_incremental_etl.python_job scheduled__2025-11-08T00:00:00+00:00 [running]> on host 7d3cebd96e2d
+[2025-11-09T18:27:13.426+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Soumil Shah' AIRFLOW_CTX_DAG_ID='dag_incremental_etl' AIRFLOW_CTX_TASK_ID='python_job' AIRFLOW_CTX_EXECUTION_DATE='2025-11-08T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-11-08T00:00:00+00:00'
+[2025-11-09T18:27:13.447+0000] {base.py:73} INFO - Using connection ID 'spark-conn' for task execution.
+[2025-11-09T18:27:13.448+0000] {spark_submit.py:403} INFO - Spark-Submit cmd: spark-submit --master spark://spark-master:7077 --conf spark.driver.memory=1g --conf spark.executor.memory=1g --conf spark.executor.instances=1 --packages org.apache.hudi:hudi-spark3.4-bundle_2.12:0.14.0,org.apache.hadoop:hadoop-aws:3.3.2 --name arrow-spark --deploy-mode client jobs/minio.py
+[2025-11-09T18:27:13.677+0000] {spark_submit.py:579} INFO - /home/***/.local/lib/python3.9/site-packages/pyspark/bin/load-spark-env.sh: line 68: ps: command not found
+[2025-11-09T18:27:17.109+0000] {spark_submit.py:579} INFO - :: loading settings :: url = jar:file:/home/***/.local/lib/python3.9/site-packages/pyspark/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml
+[2025-11-09T18:27:17.322+0000] {spark_submit.py:579} INFO - Ivy Default Cache set to: /home/***/.ivy2/cache
+[2025-11-09T18:27:17.322+0000] {spark_submit.py:579} INFO - The jars for the packages stored in: /home/***/.ivy2/jars
+[2025-11-09T18:27:17.328+0000] {spark_submit.py:579} INFO - org.apache.hudi#hudi-spark3.4-bundle_2.12 added as a dependency
+[2025-11-09T18:27:17.329+0000] {spark_submit.py:579} INFO - org.apache.hadoop#hadoop-aws added as a dependency
+[2025-11-09T18:27:17.329+0000] {spark_submit.py:579} INFO - :: resolving dependencies :: org.apache.spark#spark-submit-parent-84fd0c98-fcba-49b6-b6f4-cdb8cdceab90;1.0
+[2025-11-09T18:27:17.329+0000] {spark_submit.py:579} INFO - confs: [default]
+[2025-11-09T18:27:21.742+0000] {spark_submit.py:579} INFO - found org.apache.hadoop#hadoop-aws;3.3.2 in central
+[2025-11-09T18:27:22.903+0000] {spark_submit.py:579} INFO - found com.amazonaws#aws-java-sdk-bundle;1.11.1026 in central
+[2025-11-09T18:27:23.678+0000] {spark_submit.py:579} INFO - found org.wildfly.openssl#wildfly-openssl;1.0.7.Final in central
+[2025-11-09T18:27:23.735+0000] {spark_submit.py:579} INFO - downloading https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.2/hadoop-aws-3.3.2.jar ...
+[2025-11-09T18:27:24.370+0000] {spark_submit.py:579} INFO - [SUCCESSFUL ] org.apache.hadoop#hadoop-aws;3.3.2!hadoop-aws.jar (665ms)
+[2025-11-09T18:27:24.478+0000] {spark_submit.py:579} INFO - downloading https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.11.1026/aws-java-sdk-bundle-1.11.1026.jar ...
+[2025-11-09T18:29:13.749+0000] {spark_submit.py:579} INFO - [SUCCESSFUL ] com.amazonaws#aws-java-sdk-bundle;1.11.1026!aws-java-sdk-bundle.jar (109378ms)
+[2025-11-09T18:29:13.784+0000] {spark_submit.py:579} INFO - downloading https://repo1.maven.org/maven2/org/wildfly/openssl/wildfly-openssl/1.0.7.Final/wildfly-openssl-1.0.7.Final.jar ...
+[2025-11-09T18:29:14.001+0000] {spark_submit.py:579} INFO - [SUCCESSFUL ] org.wildfly.openssl#wildfly-openssl;1.0.7.Final!wildfly-openssl.jar (250ms)
+[2025-11-09T18:29:14.001+0000] {spark_submit.py:579} INFO - :: resolution report :: resolve 6374ms :: artifacts dl 110298ms
+[2025-11-09T18:29:14.002+0000] {spark_submit.py:579} INFO - :: modules in use:
+[2025-11-09T18:29:14.003+0000] {spark_submit.py:579} INFO - com.amazonaws#aws-java-sdk-bundle;1.11.1026 from central in [default]
+[2025-11-09T18:29:14.003+0000] {spark_submit.py:579} INFO - org.apache.hadoop#hadoop-aws;3.3.2 from central in [default]
+[2025-11-09T18:29:14.003+0000] {spark_submit.py:579} INFO - org.wildfly.openssl#wildfly-openssl;1.0.7.Final from central in [default]
+[2025-11-09T18:29:14.003+0000] {spark_submit.py:579} INFO - ---------------------------------------------------------------------
+[2025-11-09T18:29:14.003+0000] {spark_submit.py:579} INFO - |                  |            modules            ||   artifacts   |
+[2025-11-09T18:29:14.003+0000] {spark_submit.py:579} INFO - |       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+[2025-11-09T18:29:14.003+0000] {spark_submit.py:579} INFO - ---------------------------------------------------------------------
+[2025-11-09T18:29:14.003+0000] {spark_submit.py:579} INFO - |      default     |   4   |   3   |   3   |   0   ||   3   |   3   |
+[2025-11-09T18:29:14.003+0000] {spark_submit.py:579} INFO - ---------------------------------------------------------------------
+[2025-11-09T18:29:14.009+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T18:29:14.009+0000] {spark_submit.py:579} INFO - :: problems summary ::
+[2025-11-09T18:29:14.009+0000] {spark_submit.py:579} INFO - :::: WARNINGS
+[2025-11-09T18:29:14.009+0000] {spark_submit.py:579} INFO - problem while downloading module descriptor: https://repo1.maven.org/maven2/org/apache/hudi/hudi-spark3.4-bundle_2.12/0.14.0/hudi-spark3.4-bundle_2.12-0.14.0.pom: impossible to move part file to definitive one: /home/***/.ivy2/cache/org.apache.hudi/hudi-spark3.4-bundle_2.12/ivy-0.14.0.xml.original.part -> /home/***/.ivy2/cache/org.apache.hudi/hudi-spark3.4-bundle_2.12/ivy-0.14.0.xml.original (38ms)
+[2025-11-09T18:29:14.009+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T18:29:14.009+0000] {spark_submit.py:579} INFO - module not found: org.apache.hudi#hudi-spark3.4-bundle_2.12;0.14.0
+[2025-11-09T18:29:14.009+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T18:29:14.009+0000] {spark_submit.py:579} INFO - ==== local-m2-cache: tried
+[2025-11-09T18:29:14.009+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T18:29:14.009+0000] {spark_submit.py:579} INFO - file:/home/***/.m2/repository/org/apache/hudi/hudi-spark3.4-bundle_2.12/0.14.0/hudi-spark3.4-bundle_2.12-0.14.0.pom
+[2025-11-09T18:29:14.009+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T18:29:14.009+0000] {spark_submit.py:579} INFO - -- artifact org.apache.hudi#hudi-spark3.4-bundle_2.12;0.14.0!hudi-spark3.4-bundle_2.12.jar:
+[2025-11-09T18:29:14.009+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T18:29:14.009+0000] {spark_submit.py:579} INFO - file:/home/***/.m2/repository/org/apache/hudi/hudi-spark3.4-bundle_2.12/0.14.0/hudi-spark3.4-bundle_2.12-0.14.0.jar
+[2025-11-09T18:29:14.010+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T18:29:14.010+0000] {spark_submit.py:579} INFO - ==== local-ivy-cache: tried
+[2025-11-09T18:29:14.010+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T18:29:14.010+0000] {spark_submit.py:579} INFO - /home/***/.ivy2/local/org.apache.hudi/hudi-spark3.4-bundle_2.12/0.14.0/ivys/ivy.xml
+[2025-11-09T18:29:14.010+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T18:29:14.010+0000] {spark_submit.py:579} INFO - -- artifact org.apache.hudi#hudi-spark3.4-bundle_2.12;0.14.0!hudi-spark3.4-bundle_2.12.jar:
+[2025-11-09T18:29:14.010+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T18:29:14.010+0000] {spark_submit.py:579} INFO - /home/***/.ivy2/local/org.apache.hudi/hudi-spark3.4-bundle_2.12/0.14.0/jars/hudi-spark3.4-bundle_2.12.jar
+[2025-11-09T18:29:14.010+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T18:29:14.010+0000] {spark_submit.py:579} INFO - ==== central: tried
+[2025-11-09T18:29:14.010+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T18:29:14.010+0000] {spark_submit.py:579} INFO - https://repo1.maven.org/maven2/org/apache/hudi/hudi-spark3.4-bundle_2.12/0.14.0/hudi-spark3.4-bundle_2.12-0.14.0.pom
+[2025-11-09T18:29:14.010+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T18:29:14.010+0000] {spark_submit.py:579} INFO - ==== spark-packages: tried
+[2025-11-09T18:29:14.010+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T18:29:14.010+0000] {spark_submit.py:579} INFO - https://repos.spark-packages.org/org/apache/hudi/hudi-spark3.4-bundle_2.12/0.14.0/hudi-spark3.4-bundle_2.12-0.14.0.pom
+[2025-11-09T18:29:14.010+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T18:29:14.010+0000] {spark_submit.py:579} INFO - -- artifact org.apache.hudi#hudi-spark3.4-bundle_2.12;0.14.0!hudi-spark3.4-bundle_2.12.jar:
+[2025-11-09T18:29:14.010+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T18:29:14.010+0000] {spark_submit.py:579} INFO - https://repos.spark-packages.org/org/apache/hudi/hudi-spark3.4-bundle_2.12/0.14.0/hudi-spark3.4-bundle_2.12-0.14.0.jar
+[2025-11-09T18:29:14.010+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T18:29:14.010+0000] {spark_submit.py:579} INFO - ::::::::::::::::::::::::::::::::::::::::::::::
+[2025-11-09T18:29:14.010+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T18:29:14.010+0000] {spark_submit.py:579} INFO - ::          UNRESOLVED DEPENDENCIES         ::
+[2025-11-09T18:29:14.010+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T18:29:14.010+0000] {spark_submit.py:579} INFO - ::::::::::::::::::::::::::::::::::::::::::::::
+[2025-11-09T18:29:14.010+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T18:29:14.010+0000] {spark_submit.py:579} INFO - :: org.apache.hudi#hudi-spark3.4-bundle_2.12;0.14.0: not found
+[2025-11-09T18:29:14.010+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T18:29:14.010+0000] {spark_submit.py:579} INFO - ::::::::::::::::::::::::::::::::::::::::::::::
+[2025-11-09T18:29:14.010+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T18:29:14.010+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T18:29:14.010+0000] {spark_submit.py:579} INFO - 
+[2025-11-09T18:29:14.010+0000] {spark_submit.py:579} INFO - :: USE VERBOSE OR DEBUG MESSAGE LEVEL FOR MORE DETAILS
+[2025-11-09T18:29:14.011+0000] {spark_submit.py:579} INFO - Exception in thread "main" java.lang.RuntimeException: [unresolved dependency: org.apache.hudi#hudi-spark3.4-bundle_2.12;0.14.0: not found]
+[2025-11-09T18:29:14.012+0000] {spark_submit.py:579} INFO - at org.apache.spark.deploy.SparkSubmitUtils$.resolveMavenCoordinates(SparkSubmit.scala:1528)
+[2025-11-09T18:29:14.012+0000] {spark_submit.py:579} INFO - at org.apache.spark.util.DependencyUtils$.resolveMavenDependencies(DependencyUtils.scala:185)
+[2025-11-09T18:29:14.012+0000] {spark_submit.py:579} INFO - at org.apache.spark.deploy.SparkSubmit.prepareSubmitEnvironment(SparkSubmit.scala:332)
+[2025-11-09T18:29:14.012+0000] {spark_submit.py:579} INFO - at org.apache.spark.deploy.SparkSubmit.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:955)
+[2025-11-09T18:29:14.012+0000] {spark_submit.py:579} INFO - at org.apache.spark.deploy.SparkSubmit.doRunMain$1(SparkSubmit.scala:192)
+[2025-11-09T18:29:14.012+0000] {spark_submit.py:579} INFO - at org.apache.spark.deploy.SparkSubmit.submit(SparkSubmit.scala:215)
+[2025-11-09T18:29:14.012+0000] {spark_submit.py:579} INFO - at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:91)
+[2025-11-09T18:29:14.012+0000] {spark_submit.py:579} INFO - at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:1111)
+[2025-11-09T18:29:14.012+0000] {spark_submit.py:579} INFO - at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:1120)
+[2025-11-09T18:29:14.012+0000] {spark_submit.py:579} INFO - at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+[2025-11-09T18:29:14.051+0000] {taskinstance.py:1935} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/providers/apache/spark/operators/spark_submit.py", line 174, in execute
+    self._hook.submit(self.application)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/providers/apache/spark/hooks/spark_submit.py", line 505, in submit
+    raise AirflowException(
+airflow.exceptions.AirflowException: Cannot execute: spark-submit --master spark://spark-master:7077 --conf spark.driver.memory=1g --conf spark.executor.memory=1g --conf spark.executor.instances=1 --packages org.apache.hudi:hudi-spark3.4-bundle_2.12:0.14.0,org.apache.hadoop:hadoop-aws:3.3.2 --name arrow-spark --deploy-mode client jobs/minio.py. Error code is: 1.
+[2025-11-09T18:29:14.055+0000] {taskinstance.py:1398} INFO - Marking task as FAILED. dag_id=dag_incremental_etl, task_id=python_job, execution_date=20251108T000000, start_date=20251109T182713, end_date=20251109T182914
+[2025-11-09T18:29:14.071+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 5 for task python_job (Cannot execute: spark-submit --master spark://spark-master:7077 --conf spark.driver.memory=1g --conf spark.executor.memory=1g --conf spark.executor.instances=1 --packages org.apache.hudi:hudi-spark3.4-bundle_2.12:0.14.0,org.apache.hadoop:hadoop-aws:3.3.2 --name arrow-spark --deploy-mode client jobs/minio.py. Error code is: 1.; 851)
+[2025-11-09T18:29:14.080+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2025-11-09T18:29:14.098+0000] {taskinstance.py:2776} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-11-09T19:38:48.775+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_incremental_etl.python_job scheduled__2025-11-08T00:00:00+00:00 [queued]>
+[2025-11-09T19:38:48.783+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_incremental_etl.python_job scheduled__2025-11-08T00:00:00+00:00 [queued]>
+[2025-11-09T19:38:48.784+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 1
+[2025-11-09T19:38:48.796+0000] {taskinstance.py:1380} INFO - Executing <Task(SparkSubmitOperator): python_job> on 2025-11-08 00:00:00+00:00
+[2025-11-09T19:38:48.802+0000] {standard_task_runner.py:57} INFO - Started process 339 to run task
+[2025-11-09T19:38:48.807+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'dag_incremental_etl', 'python_job', 'scheduled__2025-11-08T00:00:00+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/minio.py', '--cfg-path', '/tmp/tmp03aj8bad']
+[2025-11-09T19:38:48.809+0000] {standard_task_runner.py:85} INFO - Job 3: Subtask python_job
+[2025-11-09T19:38:48.863+0000] {task_command.py:415} INFO - Running <TaskInstance: dag_incremental_etl.python_job scheduled__2025-11-08T00:00:00+00:00 [running]> on host 8acfbc175bf9
+[2025-11-09T19:38:48.957+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Soumil Shah' AIRFLOW_CTX_DAG_ID='dag_incremental_etl' AIRFLOW_CTX_TASK_ID='python_job' AIRFLOW_CTX_EXECUTION_DATE='2025-11-08T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-11-08T00:00:00+00:00'
+[2025-11-09T19:38:48.968+0000] {spark_submit.py:273} INFO - Could not load connection string spark-conn, defaulting to yarn
+[2025-11-09T19:38:48.969+0000] {spark_submit.py:403} INFO - Spark-Submit cmd: spark-submit --master yarn --conf spark.driver.memory=1g --conf spark.executor.memory=1g --conf spark.executor.instances=1 --packages org.apache.hudi:hudi-spark3.4-bundle_2.12:0.14.0,org.apache.hadoop:hadoop-aws:3.3.2 --name arrow-spark jobs/minio.py
+[2025-11-09T19:38:49.108+0000] {spark_submit.py:579} INFO - /home/***/.local/lib/python3.9/site-packages/pyspark/bin/load-spark-env.sh: line 68: ps: command not found
+[2025-11-09T19:38:51.692+0000] {spark_submit.py:579} INFO - Exception in thread "main" org.apache.spark.SparkException: When running with master 'yarn' either HADOOP_CONF_DIR or YARN_CONF_DIR must be set in the environment.
+[2025-11-09T19:38:51.692+0000] {spark_submit.py:579} INFO - at org.apache.spark.deploy.SparkSubmitArguments.error(SparkSubmitArguments.scala:650)
+[2025-11-09T19:38:51.692+0000] {spark_submit.py:579} INFO - at org.apache.spark.deploy.SparkSubmitArguments.validateSubmitArguments(SparkSubmitArguments.scala:281)
+[2025-11-09T19:38:51.692+0000] {spark_submit.py:579} INFO - at org.apache.spark.deploy.SparkSubmitArguments.validateArguments(SparkSubmitArguments.scala:237)
+[2025-11-09T19:38:51.692+0000] {spark_submit.py:579} INFO - at org.apache.spark.deploy.SparkSubmitArguments.<init>(SparkSubmitArguments.scala:122)
+[2025-11-09T19:38:51.692+0000] {spark_submit.py:579} INFO - at org.apache.spark.deploy.SparkSubmit$$anon$2$$anon$3.<init>(SparkSubmit.scala:1094)
+[2025-11-09T19:38:51.692+0000] {spark_submit.py:579} INFO - at org.apache.spark.deploy.SparkSubmit$$anon$2.parseArguments(SparkSubmit.scala:1094)
+[2025-11-09T19:38:51.692+0000] {spark_submit.py:579} INFO - at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:86)
+[2025-11-09T19:38:51.692+0000] {spark_submit.py:579} INFO - at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:1111)
+[2025-11-09T19:38:51.692+0000] {spark_submit.py:579} INFO - at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:1120)
+[2025-11-09T19:38:51.692+0000] {spark_submit.py:579} INFO - at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+[2025-11-09T19:38:51.726+0000] {taskinstance.py:1935} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/providers/apache/spark/operators/spark_submit.py", line 174, in execute
+    self._hook.submit(self.application)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/providers/apache/spark/hooks/spark_submit.py", line 505, in submit
+    raise AirflowException(
+airflow.exceptions.AirflowException: Cannot execute: spark-submit --master yarn --conf spark.driver.memory=1g --conf spark.executor.memory=1g --conf spark.executor.instances=1 --packages org.apache.hudi:hudi-spark3.4-bundle_2.12:0.14.0,org.apache.hadoop:hadoop-aws:3.3.2 --name arrow-spark jobs/minio.py. Error code is: 1.
+[2025-11-09T19:38:51.730+0000] {taskinstance.py:1398} INFO - Marking task as FAILED. dag_id=dag_incremental_etl, task_id=python_job, execution_date=20251108T000000, start_date=20251109T193848, end_date=20251109T193851
+[2025-11-09T19:38:51.748+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 3 for task python_job (Cannot execute: spark-submit --master yarn --conf spark.driver.memory=1g --conf spark.executor.memory=1g --conf spark.executor.instances=1 --packages org.apache.hudi:hudi-spark3.4-bundle_2.12:0.14.0,org.apache.hadoop:hadoop-aws:3.3.2 --name arrow-spark jobs/minio.py. Error code is: 1.; 339)
+[2025-11-09T19:38:51.793+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2025-11-09T19:38:51.816+0000] {taskinstance.py:2776} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-11-09T21:12:16.652+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_incremental_etl.python_job scheduled__2025-11-08T00:00:00+00:00 [queued]>
+[2025-11-09T21:12:16.662+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_incremental_etl.python_job scheduled__2025-11-08T00:00:00+00:00 [queued]>
+[2025-11-09T21:12:16.663+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 1
+[2025-11-09T21:12:16.674+0000] {taskinstance.py:1380} INFO - Executing <Task(SparkSubmitOperator): python_job> on 2025-11-08 00:00:00+00:00
+[2025-11-09T21:12:16.679+0000] {standard_task_runner.py:57} INFO - Started process 378 to run task
+[2025-11-09T21:12:16.682+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'dag_incremental_etl', 'python_job', 'scheduled__2025-11-08T00:00:00+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/minio.py', '--cfg-path', '/tmp/tmpdopfm5vr']
+[2025-11-09T21:12:16.685+0000] {standard_task_runner.py:85} INFO - Job 3: Subtask python_job
+[2025-11-09T21:12:16.743+0000] {task_command.py:415} INFO - Running <TaskInstance: dag_incremental_etl.python_job scheduled__2025-11-08T00:00:00+00:00 [running]> on host 10e2dd57a73d
+[2025-11-09T21:12:16.822+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Soumil Shah' AIRFLOW_CTX_DAG_ID='dag_incremental_etl' AIRFLOW_CTX_TASK_ID='python_job' AIRFLOW_CTX_EXECUTION_DATE='2025-11-08T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-11-08T00:00:00+00:00'
+[2025-11-09T21:12:16.831+0000] {base.py:73} INFO - Using connection ID 'spark-conn' for task execution.
+[2025-11-09T21:12:16.832+0000] {spark_submit.py:403} INFO - Spark-Submit cmd: spark-submit --master spark://spark-master:7077 --conf spark.driver.memory=1g --conf spark.executor.memory=1g --conf spark.executor.instances=1 --packages org.apache.hudi:hudi-spark3.4-bundle_2.12:0.14.0,org.apache.hadoop:hadoop-aws:3.3.2 --name arrow-spark --deploy-mode client jobs/minio.py
+[2025-11-09T21:12:16.954+0000] {spark_submit.py:579} INFO - /home/***/.local/lib/python3.9/site-packages/pyspark/bin/load-spark-env.sh: line 68: ps: command not found
+[2025-11-09T21:12:18.883+0000] {spark_submit.py:579} INFO - :: loading settings :: url = jar:file:/home/***/.local/lib/python3.9/site-packages/pyspark/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml
+[2025-11-09T21:12:19.107+0000] {spark_submit.py:579} INFO - Ivy Default Cache set to: /home/***/.ivy2/cache
+[2025-11-09T21:12:19.107+0000] {spark_submit.py:579} INFO - The jars for the packages stored in: /home/***/.ivy2/jars
+[2025-11-09T21:12:19.113+0000] {spark_submit.py:579} INFO - org.apache.hudi#hudi-spark3.4-bundle_2.12 added as a dependency
+[2025-11-09T21:12:19.113+0000] {spark_submit.py:579} INFO - org.apache.hadoop#hadoop-aws added as a dependency
+[2025-11-09T21:12:19.113+0000] {spark_submit.py:579} INFO - :: resolving dependencies :: org.apache.spark#spark-submit-parent-d1938b0a-3159-4c1f-b783-6ff1cb707b5e;1.0
+[2025-11-09T21:12:19.114+0000] {spark_submit.py:579} INFO - confs: [default]
+[2025-11-09T21:12:21.400+0000] {spark_submit.py:579} INFO - found org.apache.hudi#hudi-spark3.4-bundle_2.12;0.14.0 in central
+[2025-11-09T21:12:23.841+0000] {spark_submit.py:579} INFO - found org.apache.hadoop#hadoop-aws;3.3.2 in central
+[2025-11-09T21:12:24.648+0000] {spark_submit.py:579} INFO - found com.amazonaws#aws-java-sdk-bundle;1.11.1026 in central
+[2025-11-09T21:12:26.727+0000] {spark_submit.py:579} INFO - found org.wildfly.openssl#wildfly-openssl;1.0.7.Final in central
+[2025-11-09T21:12:26.762+0000] {spark_submit.py:579} INFO - downloading https://repo1.maven.org/maven2/org/apache/hudi/hudi-spark3.4-bundle_2.12/0.14.0/hudi-spark3.4-bundle_2.12-0.14.0.jar ...
+[2025-11-09T21:12:53.658+0000] {spark_submit.py:579} INFO - [SUCCESSFUL ] org.apache.hudi#hudi-spark3.4-bundle_2.12;0.14.0!hudi-spark3.4-bundle_2.12.jar (26925ms)
+[2025-11-09T21:12:53.694+0000] {spark_submit.py:579} INFO - downloading https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.2/hadoop-aws-3.3.2.jar ...
+[2025-11-09T21:12:53.929+0000] {spark_submit.py:579} INFO - [SUCCESSFUL ] org.apache.hadoop#hadoop-aws;3.3.2!hadoop-aws.jar (269ms)
+[2025-11-09T21:12:53.968+0000] {spark_submit.py:579} INFO - downloading https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.11.1026/aws-java-sdk-bundle-1.11.1026.jar ...
+[2025-11-09T21:13:53.642+0000] {spark_submit.py:579} INFO - [SUCCESSFUL ] com.amazonaws#aws-java-sdk-bundle;1.11.1026!aws-java-sdk-bundle.jar (59712ms)
+[2025-11-09T21:13:53.683+0000] {spark_submit.py:579} INFO - downloading https://repo1.maven.org/maven2/org/wildfly/openssl/wildfly-openssl/1.0.7.Final/wildfly-openssl-1.0.7.Final.jar ...
+[2025-11-09T21:13:53.818+0000] {spark_submit.py:579} INFO - [SUCCESSFUL ] org.wildfly.openssl#wildfly-openssl;1.0.7.Final!wildfly-openssl.jar (175ms)
+[2025-11-09T21:13:53.819+0000] {spark_submit.py:579} INFO - :: resolution report :: resolve 7619ms :: artifacts dl 87087ms
+[2025-11-09T21:13:53.819+0000] {spark_submit.py:579} INFO - :: modules in use:
+[2025-11-09T21:13:53.819+0000] {spark_submit.py:579} INFO - com.amazonaws#aws-java-sdk-bundle;1.11.1026 from central in [default]
+[2025-11-09T21:13:53.819+0000] {spark_submit.py:579} INFO - org.apache.hadoop#hadoop-aws;3.3.2 from central in [default]
+[2025-11-09T21:13:53.819+0000] {spark_submit.py:579} INFO - org.apache.hudi#hudi-spark3.4-bundle_2.12;0.14.0 from central in [default]
+[2025-11-09T21:13:53.819+0000] {spark_submit.py:579} INFO - org.wildfly.openssl#wildfly-openssl;1.0.7.Final from central in [default]
+[2025-11-09T21:13:53.820+0000] {spark_submit.py:579} INFO - ---------------------------------------------------------------------
+[2025-11-09T21:13:53.820+0000] {spark_submit.py:579} INFO - |                  |            modules            ||   artifacts   |
+[2025-11-09T21:13:53.820+0000] {spark_submit.py:579} INFO - |       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+[2025-11-09T21:13:53.820+0000] {spark_submit.py:579} INFO - ---------------------------------------------------------------------
+[2025-11-09T21:13:53.820+0000] {spark_submit.py:579} INFO - |      default     |   4   |   4   |   4   |   0   ||   4   |   4   |
+[2025-11-09T21:13:53.820+0000] {spark_submit.py:579} INFO - ---------------------------------------------------------------------
+[2025-11-09T21:13:53.824+0000] {spark_submit.py:579} INFO - :: retrieving :: org.apache.spark#spark-submit-parent-d1938b0a-3159-4c1f-b783-6ff1cb707b5e
+[2025-11-09T21:13:53.824+0000] {spark_submit.py:579} INFO - confs: [default]
+[2025-11-09T21:13:55.567+0000] {spark_submit.py:579} INFO - 4 artifacts copied, 0 already retrieved (324965kB/1742ms)
+[2025-11-09T21:13:55.854+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:55 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[2025-11-09T21:13:57.958+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:57 INFO SparkContext: Running Spark version 3.4.0
+[2025-11-09T21:13:57.983+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:57 INFO ResourceUtils: ==============================================================
+[2025-11-09T21:13:57.983+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:57 INFO ResourceUtils: No custom resources configured for spark.driver.
+[2025-11-09T21:13:57.984+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:57 INFO ResourceUtils: ==============================================================
+[2025-11-09T21:13:57.984+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:57 INFO SparkContext: Submitted application: arrow-spark
+[2025-11-09T21:13:58.015+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:58 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+[2025-11-09T21:13:58.042+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:58 INFO ResourceProfile: Limiting resource is cpu
+[2025-11-09T21:13:58.043+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:58 INFO ResourceProfileManager: Added ResourceProfile id: 0
+[2025-11-09T21:13:58.132+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:58 INFO SecurityManager: Changing view acls to: ***
+[2025-11-09T21:13:58.133+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:58 INFO SecurityManager: Changing modify acls to: ***
+[2025-11-09T21:13:58.133+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:58 INFO SecurityManager: Changing view acls groups to:
+[2025-11-09T21:13:58.133+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:58 INFO SecurityManager: Changing modify acls groups to:
+[2025-11-09T21:13:58.133+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:58 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: ***; groups with view permissions: EMPTY; users with modify permissions: ***; groups with modify permissions: EMPTY
+[2025-11-09T21:13:58.420+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:58 INFO Utils: Successfully started service 'sparkDriver' on port 39397.
+[2025-11-09T21:13:58.471+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:58 INFO SparkEnv: Registering MapOutputTracker
+[2025-11-09T21:13:58.514+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:58 INFO SparkEnv: Registering BlockManagerMaster
+[2025-11-09T21:13:58.550+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:58 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+[2025-11-09T21:13:58.551+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:58 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+[2025-11-09T21:13:58.557+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:58 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+[2025-11-09T21:13:58.595+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:58 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-82cf638f-aa3a-4b80-99df-16c7d99c558d
+[2025-11-09T21:13:58.612+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:58 INFO MemoryStore: MemoryStore started with capacity 434.4 MiB
+[2025-11-09T21:13:58.631+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:58 INFO SparkEnv: Registering OutputCommitCoordinator
+[2025-11-09T21:13:58.788+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:58 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+[2025-11-09T21:13:58.873+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:58 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+[2025-11-09T21:13:58.900+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:58 INFO SparkContext: Added JAR file:///home/***/.ivy2/jars/org.apache.hudi_hudi-spark3.4-bundle_2.12-0.14.0.jar at spark://10e2dd57a73d:39397/jars/org.apache.hudi_hudi-spark3.4-bundle_2.12-0.14.0.jar with timestamp 1762722837942
+[2025-11-09T21:13:58.900+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:58 INFO SparkContext: Added JAR file:///home/***/.ivy2/jars/org.apache.hadoop_hadoop-aws-3.3.2.jar at spark://10e2dd57a73d:39397/jars/org.apache.hadoop_hadoop-aws-3.3.2.jar with timestamp 1762722837942
+[2025-11-09T21:13:58.900+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:58 INFO SparkContext: Added JAR file:///home/***/.ivy2/jars/com.amazonaws_aws-java-sdk-bundle-1.11.1026.jar at spark://10e2dd57a73d:39397/jars/com.amazonaws_aws-java-sdk-bundle-1.11.1026.jar with timestamp 1762722837942
+[2025-11-09T21:13:58.900+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:58 INFO SparkContext: Added JAR file:///home/***/.ivy2/jars/org.wildfly.openssl_wildfly-openssl-1.0.7.Final.jar at spark://10e2dd57a73d:39397/jars/org.wildfly.openssl_wildfly-openssl-1.0.7.Final.jar with timestamp 1762722837942
+[2025-11-09T21:13:58.901+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:58 INFO SparkContext: Added file file:///home/***/.ivy2/jars/org.apache.hudi_hudi-spark3.4-bundle_2.12-0.14.0.jar at spark://10e2dd57a73d:39397/files/org.apache.hudi_hudi-spark3.4-bundle_2.12-0.14.0.jar with timestamp 1762722837942
+[2025-11-09T21:13:58.902+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:58 INFO Utils: Copying /home/***/.ivy2/jars/org.apache.hudi_hudi-spark3.4-bundle_2.12-0.14.0.jar to /tmp/spark-13877796-a5a0-452a-b543-e7ae9e371541/userFiles-acbe0ae3-dc88-4d34-a5a1-09f398b42b34/org.apache.hudi_hudi-spark3.4-bundle_2.12-0.14.0.jar
+[2025-11-09T21:13:59.578+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:59 INFO SparkContext: Added file file:///home/***/.ivy2/jars/org.apache.hadoop_hadoop-aws-3.3.2.jar at spark://10e2dd57a73d:39397/files/org.apache.hadoop_hadoop-aws-3.3.2.jar with timestamp 1762722837942
+[2025-11-09T21:13:59.578+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:59 INFO Utils: Copying /home/***/.ivy2/jars/org.apache.hadoop_hadoop-aws-3.3.2.jar to /tmp/spark-13877796-a5a0-452a-b543-e7ae9e371541/userFiles-acbe0ae3-dc88-4d34-a5a1-09f398b42b34/org.apache.hadoop_hadoop-aws-3.3.2.jar
+[2025-11-09T21:13:59.588+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:59 INFO SparkContext: Added file file:///home/***/.ivy2/jars/com.amazonaws_aws-java-sdk-bundle-1.11.1026.jar at spark://10e2dd57a73d:39397/files/com.amazonaws_aws-java-sdk-bundle-1.11.1026.jar with timestamp 1762722837942
+[2025-11-09T21:13:59.589+0000] {spark_submit.py:579} INFO - 25/11/09 21:13:59 INFO Utils: Copying /home/***/.ivy2/jars/com.amazonaws_aws-java-sdk-bundle-1.11.1026.jar to /tmp/spark-13877796-a5a0-452a-b543-e7ae9e371541/userFiles-acbe0ae3-dc88-4d34-a5a1-09f398b42b34/com.amazonaws_aws-java-sdk-bundle-1.11.1026.jar
+[2025-11-09T21:14:00.654+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:00 INFO SparkContext: Added file file:///home/***/.ivy2/jars/org.wildfly.openssl_wildfly-openssl-1.0.7.Final.jar at spark://10e2dd57a73d:39397/files/org.wildfly.openssl_wildfly-openssl-1.0.7.Final.jar with timestamp 1762722837942
+[2025-11-09T21:14:00.654+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:00 INFO Utils: Copying /home/***/.ivy2/jars/org.wildfly.openssl_wildfly-openssl-1.0.7.Final.jar to /tmp/spark-13877796-a5a0-452a-b543-e7ae9e371541/userFiles-acbe0ae3-dc88-4d34-a5a1-09f398b42b34/org.wildfly.openssl_wildfly-openssl-1.0.7.Final.jar
+[2025-11-09T21:14:00.739+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:00 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://spark-master:7077...
+[2025-11-09T21:14:00.794+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:00 INFO TransportClientFactory: Successfully created connection to spark-master/172.18.0.3:7077 after 31 ms (0 ms spent in bootstraps)
+[2025-11-09T21:14:01.013+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:01 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20251109211400-0000
+[2025-11-09T21:14:01.027+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:01 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 36499.
+[2025-11-09T21:14:01.027+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:01 INFO NettyBlockTransferService: Server created on 10e2dd57a73d:36499
+[2025-11-09T21:14:01.030+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:01 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+[2025-11-09T21:14:01.041+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:01 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 10e2dd57a73d, 36499, None)
+[2025-11-09T21:14:01.044+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:01 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20251109211400-0000/0 on worker-20251109210330-172.18.0.6-42645 (172.18.0.6:42645) with 4 core(s)
+[2025-11-09T21:14:01.046+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:01 INFO BlockManagerMasterEndpoint: Registering block manager 10e2dd57a73d:36499 with 434.4 MiB RAM, BlockManagerId(driver, 10e2dd57a73d, 36499, None)
+[2025-11-09T21:14:01.047+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:01 INFO StandaloneSchedulerBackend: Granted executor ID app-20251109211400-0000/0 on hostPort 172.18.0.6:42645 with 4 core(s), 1024.0 MiB RAM
+[2025-11-09T21:14:01.051+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:01 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 10e2dd57a73d, 36499, None)
+[2025-11-09T21:14:01.054+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:01 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 10e2dd57a73d, 36499, None)
+[2025-11-09T21:14:01.229+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:01 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20251109211400-0000/0 is now RUNNING
+[2025-11-09T21:14:01.375+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:01 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+[2025-11-09T21:14:02.860+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:02 INFO SharedState: Setting hive.metastore.warehouse.dir ('null') to the value of spark.sql.warehouse.dir.
+[2025-11-09T21:14:02.862+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:02 INFO SharedState: Warehouse path is 'file:/opt/***/spark-warehouse'.
+[2025-11-09T21:14:03.388+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:03 INFO StandaloneSchedulerBackend$StandaloneDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.6:56782) with ID 0,  ResourceProfileId 0
+[2025-11-09T21:14:03.476+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:03 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.6:35645 with 434.4 MiB RAM, BlockManagerId(0, 172.18.0.6, 35645, None)
+[2025-11-09T21:14:05.824+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:05 WARN MetricsConfig: Cannot locate configuration: tried hadoop-metrics2-s3a-file-system.properties,hadoop-metrics2.properties
+[2025-11-09T21:14:05.841+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:05 INFO MetricsSystemImpl: Scheduled Metric snapshot period at 10 second(s).
+[2025-11-09T21:14:05.842+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:05 INFO MetricsSystemImpl: s3a-file-system metrics system started
+[2025-11-09T21:14:07.092+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:07 WARN AbstractS3ACommitterFactory: Using standard FileOutputCommitter to commit work. This is slow and potentially unsafe.
+[2025-11-09T21:14:07.092+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:07 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+[2025-11-09T21:14:07.092+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:07 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+[2025-11-09T21:14:07.093+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:07 INFO AbstractS3ACommitterFactory: Using Committer FileOutputCommitter{PathOutputCommitter{context=TaskAttemptContextImpl{JobContextImpl{jobId=job_202511092114078217597102539109839_0000}; taskId=attempt_202511092114078217597102539109839_0000_m_000000_0, status=''}; org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter@6c0f3f66}; outputPath=s3a://test/outputv2_data, workPath=s3a://test/outputv2_data/_temporary/0/_temporary/attempt_202511092114078217597102539109839_0000_m_000000_0, algorithmVersion=1, skipCleanup=false, ignoreCleanupFailures=false} for s3a://test/outputv2_data
+[2025-11-09T21:14:07.093+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:07 INFO SQLHadoopMapReduceCommitProtocol: Using output committer class org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter
+[2025-11-09T21:14:07.379+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:07 INFO CodeGenerator: Code generated in 122.983163 ms
+[2025-11-09T21:14:07.399+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:07 INFO SparkContext: Starting job: save at NativeMethodAccessorImpl.java:0
+[2025-11-09T21:14:07.410+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:07 INFO DAGScheduler: Got job 0 (save at NativeMethodAccessorImpl.java:0) with 4 output partitions
+[2025-11-09T21:14:07.410+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:07 INFO DAGScheduler: Final stage: ResultStage 0 (save at NativeMethodAccessorImpl.java:0)
+[2025-11-09T21:14:07.411+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:07 INFO DAGScheduler: Parents of final stage: List()
+[2025-11-09T21:14:07.411+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:07 INFO DAGScheduler: Missing parents: List()
+[2025-11-09T21:14:07.413+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:07 INFO DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[6] at save at NativeMethodAccessorImpl.java:0), which has no missing parents
+[2025-11-09T21:14:07.528+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:07 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 219.7 KiB, free 434.2 MiB)
+[2025-11-09T21:14:07.761+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:07 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 79.9 KiB, free 434.1 MiB)
+[2025-11-09T21:14:07.763+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:07 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10e2dd57a73d:36499 (size: 79.9 KiB, free: 434.3 MiB)
+[2025-11-09T21:14:07.767+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:07 INFO SparkContext: Created broadcast 0 from broadcast at DAGScheduler.scala:1535
+[2025-11-09T21:14:07.781+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:07 INFO DAGScheduler: Submitting 4 missing tasks from ResultStage 0 (MapPartitionsRDD[6] at save at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0, 1, 2, 3))
+[2025-11-09T21:14:07.782+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:07 INFO TaskSchedulerImpl: Adding task set 0.0 with 4 tasks resource profile 0
+[2025-11-09T21:14:07.817+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:07 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0) (172.18.0.6, executor 0, partition 0, PROCESS_LOCAL, 7245 bytes)
+[2025-11-09T21:14:07.821+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:07 INFO TaskSetManager: Starting task 1.0 in stage 0.0 (TID 1) (172.18.0.6, executor 0, partition 1, PROCESS_LOCAL, 7276 bytes)
+[2025-11-09T21:14:07.821+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:07 INFO TaskSetManager: Starting task 2.0 in stage 0.0 (TID 2) (172.18.0.6, executor 0, partition 2, PROCESS_LOCAL, 7277 bytes)
+[2025-11-09T21:14:07.822+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:07 INFO TaskSetManager: Starting task 3.0 in stage 0.0 (TID 3) (172.18.0.6, executor 0, partition 3, PROCESS_LOCAL, 7276 bytes)
+[2025-11-09T21:14:08.423+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:08 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 172.18.0.6:35645 (size: 79.9 KiB, free: 434.3 MiB)
+[2025-11-09T21:14:10.991+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:10 INFO TaskSetManager: Finished task 1.0 in stage 0.0 (TID 1) in 3170 ms on 172.18.0.6 (executor 0) (1/4)
+[2025-11-09T21:14:10.992+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:10 INFO TaskSetManager: Finished task 2.0 in stage 0.0 (TID 2) in 3171 ms on 172.18.0.6 (executor 0) (2/4)
+[2025-11-09T21:14:10.993+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:10 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 3188 ms on 172.18.0.6 (executor 0) (3/4)
+[2025-11-09T21:14:10.997+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:10 INFO PythonAccumulatorV2: Connected to AccumulatorServer at host: 127.0.0.1 port: 52231
+[2025-11-09T21:14:10.998+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:10 INFO TaskSetManager: Finished task 3.0 in stage 0.0 (TID 3) in 3176 ms on 172.18.0.6 (executor 0) (4/4)
+[2025-11-09T21:14:10.998+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:10 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool
+[2025-11-09T21:14:11.007+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:11 INFO DAGScheduler: ResultStage 0 (save at NativeMethodAccessorImpl.java:0) finished in 3.582 s
+[2025-11-09T21:14:11.009+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:11 INFO DAGScheduler: Job 0 is finished. Cancelling potential speculative or zombie tasks for this job
+[2025-11-09T21:14:11.010+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:11 INFO TaskSchedulerImpl: Killing all running tasks in stage 0: Stage finished
+[2025-11-09T21:14:11.012+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:11 INFO DAGScheduler: Job 0 finished: save at NativeMethodAccessorImpl.java:0, took 3.611975 s
+[2025-11-09T21:14:11.018+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:11 INFO FileFormatWriter: Start to commit write Job 147fa67c-d680-4c92-9953-c617d1f275d7.
+[2025-11-09T21:14:11.459+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:11 INFO FileFormatWriter: Write Job 147fa67c-d680-4c92-9953-c617d1f275d7 committed. Elapsed time: 439 ms.
+[2025-11-09T21:14:11.462+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:11 INFO FileFormatWriter: Finished processing stats for write job 147fa67c-d680-4c92-9953-c617d1f275d7.
+[2025-11-09T21:14:11.466+0000] {spark_submit.py:579} INFO - Data written successfully to s3a://test/outputv2_data
+[2025-11-09T21:14:11.467+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:11 INFO SparkContext: SparkContext is stopping with exitCode 0.
+[2025-11-09T21:14:11.484+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:11 INFO SparkUI: Stopped Spark web UI at http://10e2dd57a73d:4040
+[2025-11-09T21:14:11.490+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:11 INFO StandaloneSchedulerBackend: Shutting down all executors
+[2025-11-09T21:14:11.490+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:11 INFO StandaloneSchedulerBackend$StandaloneDriverEndpoint: Asking each executor to shut down
+[2025-11-09T21:14:11.519+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:11 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+[2025-11-09T21:14:11.542+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:11 INFO MemoryStore: MemoryStore cleared
+[2025-11-09T21:14:11.542+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:11 INFO BlockManager: BlockManager stopped
+[2025-11-09T21:14:11.548+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:11 INFO BlockManagerMaster: BlockManagerMaster stopped
+[2025-11-09T21:14:11.551+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:11 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+[2025-11-09T21:14:11.594+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:11 INFO SparkContext: Successfully stopped SparkContext
+[2025-11-09T21:14:12.180+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:12 INFO ShutdownHookManager: Shutdown hook called
+[2025-11-09T21:14:12.181+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:12 INFO ShutdownHookManager: Deleting directory /tmp/spark-0d811ae6-760e-4607-a46b-af6c88520df1
+[2025-11-09T21:14:12.185+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:12 INFO ShutdownHookManager: Deleting directory /tmp/spark-13877796-a5a0-452a-b543-e7ae9e371541
+[2025-11-09T21:14:12.188+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:12 INFO ShutdownHookManager: Deleting directory /tmp/spark-13877796-a5a0-452a-b543-e7ae9e371541/pyspark-2144b9e0-2617-4d05-8be4-27b6615b38f2
+[2025-11-09T21:14:12.196+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:12 INFO MetricsSystemImpl: Stopping s3a-file-system metrics system...
+[2025-11-09T21:14:12.196+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:12 INFO MetricsSystemImpl: s3a-file-system metrics system stopped.
+[2025-11-09T21:14:12.196+0000] {spark_submit.py:579} INFO - 25/11/09 21:14:12 INFO MetricsSystemImpl: s3a-file-system metrics system shutdown complete.
+[2025-11-09T21:14:12.271+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=dag_incremental_etl, task_id=python_job, execution_date=20251108T000000, start_date=20251109T211216, end_date=20251109T211412
+[2025-11-09T21:14:12.310+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2025-11-09T21:14:12.328+0000] {taskinstance.py:2776} INFO - 1 downstream tasks scheduled from follow-on schedule check

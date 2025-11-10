@@ -5293,3 +5293,220 @@ sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) connection to serve
 [2025-11-10T22:19:49.651+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:19:49.650+0000] {dag.py:2915} INFO - Sync 1 DAGs
 [2025-11-10T22:19:49.663+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:19:49.663+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_create_hudi_tables to 2025-11-09T00:00:00+00:00, run_after=2025-11-10T00:00:00+00:00
 [2025-11-10T22:19:49.676+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/my_dag.py took 0.056 seconds
+[2025-11-10T22:20:19.782+0000] {processor.py:157} INFO - Started process (PID=355) to work on /opt/airflow/dags/my_dag.py
+[2025-11-10T22:20:19.783+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/my_dag.py for tasks to queue
+[2025-11-10T22:20:19.786+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:20:19.785+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:20:19.794+0000] {processor.py:839} INFO - DAG(s) dict_keys(['dag_create_hudi_tables']) retrieved from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:20:19.819+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:20:19.818+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-11-10T22:20:19.837+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:20:19.837+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_create_hudi_tables to 2025-11-09T00:00:00+00:00, run_after=2025-11-10T00:00:00+00:00
+[2025-11-10T22:20:19.855+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/my_dag.py took 0.075 seconds
+[2025-11-10T22:20:49.949+0000] {processor.py:157} INFO - Started process (PID=365) to work on /opt/airflow/dags/my_dag.py
+[2025-11-10T22:20:49.950+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/my_dag.py for tasks to queue
+[2025-11-10T22:20:49.951+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:20:49.951+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:20:49.960+0000] {processor.py:839} INFO - DAG(s) dict_keys(['dag_create_hudi_tables']) retrieved from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:20:49.982+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:20:49.982+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-11-10T22:20:49.999+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:20:49.999+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_create_hudi_tables to 2025-11-09T00:00:00+00:00, run_after=2025-11-10T00:00:00+00:00
+[2025-11-10T22:20:50.014+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/my_dag.py took 0.067 seconds
+[2025-11-10T22:21:20.148+0000] {processor.py:157} INFO - Started process (PID=375) to work on /opt/airflow/dags/my_dag.py
+[2025-11-10T22:21:20.150+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/my_dag.py for tasks to queue
+[2025-11-10T22:21:20.153+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:21:20.152+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:21:20.166+0000] {processor.py:839} INFO - DAG(s) dict_keys(['dag_create_hudi_tables']) retrieved from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:21:20.203+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:21:20.202+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-11-10T22:21:20.224+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:21:20.224+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_create_hudi_tables to 2025-11-09T00:00:00+00:00, run_after=2025-11-10T00:00:00+00:00
+[2025-11-10T22:21:20.247+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/my_dag.py took 0.102 seconds
+[2025-11-10T22:21:50.308+0000] {processor.py:157} INFO - Started process (PID=385) to work on /opt/airflow/dags/my_dag.py
+[2025-11-10T22:21:50.309+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/my_dag.py for tasks to queue
+[2025-11-10T22:21:50.310+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:21:50.310+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:21:50.323+0000] {processor.py:839} INFO - DAG(s) dict_keys(['dag_create_hudi_tables']) retrieved from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:21:50.350+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:21:50.349+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-11-10T22:21:50.367+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:21:50.366+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_create_hudi_tables to 2025-11-09T00:00:00+00:00, run_after=2025-11-10T00:00:00+00:00
+[2025-11-10T22:21:50.382+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/my_dag.py took 0.076 seconds
+[2025-11-10T22:22:20.539+0000] {processor.py:157} INFO - Started process (PID=395) to work on /opt/airflow/dags/my_dag.py
+[2025-11-10T22:22:20.540+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/my_dag.py for tasks to queue
+[2025-11-10T22:22:20.543+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:22:20.542+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:22:20.551+0000] {processor.py:839} INFO - DAG(s) dict_keys(['dag_create_hudi_tables']) retrieved from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:22:20.579+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:22:20.578+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-11-10T22:22:20.597+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:22:20.597+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_create_hudi_tables to 2025-11-09T00:00:00+00:00, run_after=2025-11-10T00:00:00+00:00
+[2025-11-10T22:22:20.615+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/my_dag.py took 0.078 seconds
+[2025-11-10T22:22:50.747+0000] {processor.py:157} INFO - Started process (PID=405) to work on /opt/airflow/dags/my_dag.py
+[2025-11-10T22:22:50.751+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/my_dag.py for tasks to queue
+[2025-11-10T22:22:50.759+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:22:50.758+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:22:50.802+0000] {processor.py:839} INFO - DAG(s) dict_keys(['dag_create_hudi_tables']) retrieved from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:22:50.869+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:22:50.867+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-11-10T22:22:50.907+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:22:50.907+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_create_hudi_tables to 2025-11-09T00:00:00+00:00, run_after=2025-11-10T00:00:00+00:00
+[2025-11-10T22:22:50.936+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/my_dag.py took 0.205 seconds
+[2025-11-10T22:23:21.111+0000] {processor.py:157} INFO - Started process (PID=415) to work on /opt/airflow/dags/my_dag.py
+[2025-11-10T22:23:21.112+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/my_dag.py for tasks to queue
+[2025-11-10T22:23:21.114+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:23:21.114+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:23:21.125+0000] {processor.py:839} INFO - DAG(s) dict_keys(['dag_create_hudi_tables']) retrieved from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:23:21.153+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:23:21.153+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-11-10T22:23:21.169+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:23:21.169+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_create_hudi_tables to 2025-11-09T00:00:00+00:00, run_after=2025-11-10T00:00:00+00:00
+[2025-11-10T22:23:21.184+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/my_dag.py took 0.076 seconds
+[2025-11-10T22:23:51.279+0000] {processor.py:157} INFO - Started process (PID=425) to work on /opt/airflow/dags/my_dag.py
+[2025-11-10T22:23:51.280+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/my_dag.py for tasks to queue
+[2025-11-10T22:23:51.283+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:23:51.283+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:23:51.296+0000] {processor.py:839} INFO - DAG(s) dict_keys(['dag_create_hudi_tables']) retrieved from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:23:51.330+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:23:51.330+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-11-10T22:23:51.349+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:23:51.348+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_create_hudi_tables to 2025-11-09T00:00:00+00:00, run_after=2025-11-10T00:00:00+00:00
+[2025-11-10T22:23:51.365+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/my_dag.py took 0.090 seconds
+[2025-11-10T22:24:21.466+0000] {processor.py:157} INFO - Started process (PID=435) to work on /opt/airflow/dags/my_dag.py
+[2025-11-10T22:24:21.467+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/my_dag.py for tasks to queue
+[2025-11-10T22:24:21.471+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:24:21.471+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:24:21.484+0000] {processor.py:839} INFO - DAG(s) dict_keys(['dag_create_hudi_tables']) retrieved from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:24:21.520+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:24:21.519+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-11-10T22:24:21.541+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:24:21.541+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_create_hudi_tables to 2025-11-09T00:00:00+00:00, run_after=2025-11-10T00:00:00+00:00
+[2025-11-10T22:24:21.561+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/my_dag.py took 0.100 seconds
+[2025-11-10T22:24:51.648+0000] {processor.py:157} INFO - Started process (PID=445) to work on /opt/airflow/dags/my_dag.py
+[2025-11-10T22:24:51.649+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/my_dag.py for tasks to queue
+[2025-11-10T22:24:51.652+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:24:51.652+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:24:51.666+0000] {processor.py:839} INFO - DAG(s) dict_keys(['dag_create_hudi_tables']) retrieved from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:24:51.711+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:24:51.710+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-11-10T22:24:51.742+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:24:51.741+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_create_hudi_tables to 2025-11-09T00:00:00+00:00, run_after=2025-11-10T00:00:00+00:00
+[2025-11-10T22:24:51.775+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/my_dag.py took 0.131 seconds
+[2025-11-10T22:25:21.938+0000] {processor.py:157} INFO - Started process (PID=455) to work on /opt/airflow/dags/my_dag.py
+[2025-11-10T22:25:21.939+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/my_dag.py for tasks to queue
+[2025-11-10T22:25:21.940+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:25:21.940+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:25:21.952+0000] {processor.py:839} INFO - DAG(s) dict_keys(['dag_create_hudi_tables']) retrieved from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:25:21.982+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:25:21.981+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-11-10T22:25:22.004+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:25:22.004+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_create_hudi_tables to 2025-11-09T00:00:00+00:00, run_after=2025-11-10T00:00:00+00:00
+[2025-11-10T22:25:22.021+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/my_dag.py took 0.084 seconds
+[2025-11-10T22:25:52.123+0000] {processor.py:157} INFO - Started process (PID=465) to work on /opt/airflow/dags/my_dag.py
+[2025-11-10T22:25:52.125+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/my_dag.py for tasks to queue
+[2025-11-10T22:25:52.127+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:25:52.126+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:25:52.137+0000] {processor.py:839} INFO - DAG(s) dict_keys(['dag_create_hudi_tables']) retrieved from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:25:52.185+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:25:52.184+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-11-10T22:25:52.211+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:25:52.211+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_create_hudi_tables to 2025-11-09T00:00:00+00:00, run_after=2025-11-10T00:00:00+00:00
+[2025-11-10T22:25:52.241+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/my_dag.py took 0.120 seconds
+[2025-11-10T22:26:22.417+0000] {processor.py:157} INFO - Started process (PID=475) to work on /opt/airflow/dags/my_dag.py
+[2025-11-10T22:26:22.419+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/my_dag.py for tasks to queue
+[2025-11-10T22:26:22.422+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:26:22.421+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:26:22.435+0000] {processor.py:839} INFO - DAG(s) dict_keys(['dag_create_hudi_tables']) retrieved from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:26:22.468+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:26:22.467+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-11-10T22:26:22.491+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:26:22.491+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_create_hudi_tables to 2025-11-09T00:00:00+00:00, run_after=2025-11-10T00:00:00+00:00
+[2025-11-10T22:26:22.512+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/my_dag.py took 0.101 seconds
+[2025-11-10T22:27:18.977+0000] {processor.py:157} INFO - Started process (PID=205) to work on /opt/airflow/dags/my_dag.py
+[2025-11-10T22:27:18.978+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/my_dag.py for tasks to queue
+[2025-11-10T22:27:18.981+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:27:18.981+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:27:18.992+0000] {processor.py:839} INFO - DAG(s) dict_keys(['dag_create_hudi_tables']) retrieved from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:27:19.022+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:27:19.021+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-11-10T22:27:19.041+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:27:19.041+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_create_hudi_tables to 2025-11-09T00:00:00+00:00, run_after=2025-11-10T00:00:00+00:00
+[2025-11-10T22:27:19.063+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/my_dag.py took 0.091 seconds
+[2025-11-10T22:27:49.248+0000] {processor.py:157} INFO - Started process (PID=215) to work on /opt/airflow/dags/my_dag.py
+[2025-11-10T22:27:49.250+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/my_dag.py for tasks to queue
+[2025-11-10T22:27:49.252+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:27:49.252+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:27:49.268+0000] {processor.py:839} INFO - DAG(s) dict_keys(['dag_create_hudi_tables']) retrieved from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:27:49.338+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:27:49.336+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-11-10T22:27:49.387+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:27:49.386+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_create_hudi_tables to 2025-11-09T00:00:00+00:00, run_after=2025-11-10T00:00:00+00:00
+[2025-11-10T22:27:49.427+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/my_dag.py took 0.184 seconds
+[2025-11-10T22:28:30.140+0000] {processor.py:157} INFO - Started process (PID=206) to work on /opt/airflow/dags/my_dag.py
+[2025-11-10T22:28:30.141+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/my_dag.py for tasks to queue
+[2025-11-10T22:28:30.143+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:28:30.143+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:28:30.154+0000] {processor.py:839} INFO - DAG(s) dict_keys(['dag_create_hudi_tables']) retrieved from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:28:30.186+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:28:30.186+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-11-10T22:28:30.214+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:28:30.214+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_create_hudi_tables to 2025-11-09T00:00:00+00:00, run_after=2025-11-10T00:00:00+00:00
+[2025-11-10T22:28:30.237+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/my_dag.py took 0.102 seconds
+[2025-11-10T22:29:00.333+0000] {processor.py:157} INFO - Started process (PID=216) to work on /opt/airflow/dags/my_dag.py
+[2025-11-10T22:29:00.334+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/my_dag.py for tasks to queue
+[2025-11-10T22:29:00.336+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:29:00.336+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:29:00.346+0000] {processor.py:839} INFO - DAG(s) dict_keys(['dag_create_hudi_tables']) retrieved from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:29:00.372+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:29:00.371+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-11-10T22:29:00.385+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:29:00.385+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_create_hudi_tables to 2025-11-09T00:00:00+00:00, run_after=2025-11-10T00:00:00+00:00
+[2025-11-10T22:29:00.399+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/my_dag.py took 0.069 seconds
+[2025-11-10T22:29:30.512+0000] {processor.py:157} INFO - Started process (PID=226) to work on /opt/airflow/dags/my_dag.py
+[2025-11-10T22:29:30.514+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/my_dag.py for tasks to queue
+[2025-11-10T22:29:30.515+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:29:30.515+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:29:30.523+0000] {processor.py:839} INFO - DAG(s) dict_keys(['dag_create_hudi_tables']) retrieved from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:29:30.549+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:29:30.548+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-11-10T22:29:30.569+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:29:30.568+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_create_hudi_tables to 2025-11-09T00:00:00+00:00, run_after=2025-11-10T00:00:00+00:00
+[2025-11-10T22:29:30.592+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/my_dag.py took 0.082 seconds
+[2025-11-10T22:30:22.797+0000] {processor.py:157} INFO - Started process (PID=205) to work on /opt/airflow/dags/my_dag.py
+[2025-11-10T22:30:22.799+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/my_dag.py for tasks to queue
+[2025-11-10T22:30:22.803+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:30:22.802+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:30:22.817+0000] {processor.py:839} INFO - DAG(s) dict_keys(['dag_create_hudi_tables']) retrieved from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:30:22.857+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:30:22.857+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-11-10T22:30:22.886+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:30:22.886+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_create_hudi_tables to 2025-11-09T00:00:00+00:00, run_after=2025-11-10T00:00:00+00:00
+[2025-11-10T22:30:22.917+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/my_dag.py took 0.126 seconds
+[2025-11-10T22:30:52.994+0000] {processor.py:157} INFO - Started process (PID=215) to work on /opt/airflow/dags/my_dag.py
+[2025-11-10T22:30:52.995+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/my_dag.py for tasks to queue
+[2025-11-10T22:30:52.997+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:30:52.997+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:30:53.012+0000] {processor.py:839} INFO - DAG(s) dict_keys(['dag_create_hudi_tables']) retrieved from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:30:53.055+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:30:53.054+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-11-10T22:30:53.088+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:30:53.087+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_create_hudi_tables to 2025-11-09T00:00:00+00:00, run_after=2025-11-10T00:00:00+00:00
+[2025-11-10T22:30:53.119+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/my_dag.py took 0.129 seconds
+[2025-11-10T22:34:20.736+0000] {processor.py:157} INFO - Started process (PID=206) to work on /opt/airflow/dags/my_dag.py
+[2025-11-10T22:34:20.737+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/my_dag.py for tasks to queue
+[2025-11-10T22:34:20.741+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:34:20.741+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:34:20.760+0000] {processor.py:839} INFO - DAG(s) dict_keys(['dag_create_hudi_tables']) retrieved from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:34:20.803+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:34:20.802+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-11-10T22:34:20.825+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:34:20.825+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_create_hudi_tables to 2025-11-09T00:00:00+00:00, run_after=2025-11-10T00:00:00+00:00
+[2025-11-10T22:34:20.850+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/my_dag.py took 0.120 seconds
+[2025-11-10T22:34:50.923+0000] {processor.py:157} INFO - Started process (PID=216) to work on /opt/airflow/dags/my_dag.py
+[2025-11-10T22:34:50.925+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/my_dag.py for tasks to queue
+[2025-11-10T22:34:50.927+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:34:50.927+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:34:50.938+0000] {processor.py:839} INFO - DAG(s) dict_keys(['dag_create_hudi_tables']) retrieved from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:34:50.970+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:34:50.970+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-11-10T22:34:50.988+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:34:50.988+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_create_hudi_tables to 2025-11-09T00:00:00+00:00, run_after=2025-11-10T00:00:00+00:00
+[2025-11-10T22:34:51.007+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/my_dag.py took 0.087 seconds
+[2025-11-10T22:35:21.131+0000] {processor.py:157} INFO - Started process (PID=226) to work on /opt/airflow/dags/my_dag.py
+[2025-11-10T22:35:21.131+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/my_dag.py for tasks to queue
+[2025-11-10T22:35:21.134+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:35:21.133+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:35:21.148+0000] {processor.py:839} INFO - DAG(s) dict_keys(['dag_create_hudi_tables']) retrieved from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:35:21.184+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:35:21.183+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-11-10T22:35:21.205+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:35:21.205+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_create_hudi_tables to 2025-11-09T00:00:00+00:00, run_after=2025-11-10T00:00:00+00:00
+[2025-11-10T22:35:21.224+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/my_dag.py took 0.097 seconds
+[2025-11-10T22:35:51.326+0000] {processor.py:157} INFO - Started process (PID=236) to work on /opt/airflow/dags/my_dag.py
+[2025-11-10T22:35:51.327+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/my_dag.py for tasks to queue
+[2025-11-10T22:35:51.328+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:35:51.328+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:35:51.337+0000] {processor.py:839} INFO - DAG(s) dict_keys(['dag_create_hudi_tables']) retrieved from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:35:51.359+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:35:51.359+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-11-10T22:35:51.376+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:35:51.376+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_create_hudi_tables to 2025-11-09T00:00:00+00:00, run_after=2025-11-10T00:00:00+00:00
+[2025-11-10T22:35:51.391+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/my_dag.py took 0.067 seconds
+[2025-11-10T22:36:21.528+0000] {processor.py:157} INFO - Started process (PID=246) to work on /opt/airflow/dags/my_dag.py
+[2025-11-10T22:36:21.530+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/my_dag.py for tasks to queue
+[2025-11-10T22:36:21.533+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:36:21.532+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:36:21.543+0000] {processor.py:839} INFO - DAG(s) dict_keys(['dag_create_hudi_tables']) retrieved from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:36:21.572+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:36:21.572+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-11-10T22:36:21.590+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:36:21.590+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_create_hudi_tables to 2025-11-09T00:00:00+00:00, run_after=2025-11-10T00:00:00+00:00
+[2025-11-10T22:36:21.607+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/my_dag.py took 0.084 seconds
+[2025-11-10T22:36:51.699+0000] {processor.py:157} INFO - Started process (PID=256) to work on /opt/airflow/dags/my_dag.py
+[2025-11-10T22:36:51.699+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/my_dag.py for tasks to queue
+[2025-11-10T22:36:51.701+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:36:51.701+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:36:51.712+0000] {processor.py:839} INFO - DAG(s) dict_keys(['dag_create_hudi_tables']) retrieved from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:36:51.744+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:36:51.743+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-11-10T22:36:51.764+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:36:51.764+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_create_hudi_tables to 2025-11-09T00:00:00+00:00, run_after=2025-11-10T00:00:00+00:00
+[2025-11-10T22:36:51.785+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/my_dag.py took 0.089 seconds
+[2025-11-10T22:37:21.884+0000] {processor.py:157} INFO - Started process (PID=266) to work on /opt/airflow/dags/my_dag.py
+[2025-11-10T22:37:21.886+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/my_dag.py for tasks to queue
+[2025-11-10T22:37:21.889+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:37:21.889+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:37:21.900+0000] {processor.py:839} INFO - DAG(s) dict_keys(['dag_create_hudi_tables']) retrieved from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:37:21.934+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:37:21.934+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-11-10T22:37:21.953+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:37:21.952+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_create_hudi_tables to 2025-11-09T00:00:00+00:00, run_after=2025-11-10T00:00:00+00:00
+[2025-11-10T22:37:21.970+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/my_dag.py took 0.090 seconds
+[2025-11-10T22:37:52.053+0000] {processor.py:157} INFO - Started process (PID=276) to work on /opt/airflow/dags/my_dag.py
+[2025-11-10T22:37:52.054+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/my_dag.py for tasks to queue
+[2025-11-10T22:37:52.055+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:37:52.055+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:37:52.066+0000] {processor.py:839} INFO - DAG(s) dict_keys(['dag_create_hudi_tables']) retrieved from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:37:52.096+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:37:52.096+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-11-10T22:37:52.114+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:37:52.114+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_create_hudi_tables to 2025-11-09T00:00:00+00:00, run_after=2025-11-10T00:00:00+00:00
+[2025-11-10T22:37:52.134+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/my_dag.py took 0.083 seconds
+[2025-11-10T22:38:22.235+0000] {processor.py:157} INFO - Started process (PID=286) to work on /opt/airflow/dags/my_dag.py
+[2025-11-10T22:38:22.236+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/my_dag.py for tasks to queue
+[2025-11-10T22:38:22.238+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:38:22.237+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:38:22.248+0000] {processor.py:839} INFO - DAG(s) dict_keys(['dag_create_hudi_tables']) retrieved from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:38:22.274+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:38:22.274+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-11-10T22:38:22.292+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:38:22.292+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_create_hudi_tables to 2025-11-09T00:00:00+00:00, run_after=2025-11-10T00:00:00+00:00
+[2025-11-10T22:38:22.309+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/my_dag.py took 0.076 seconds
+[2025-11-10T22:38:52.397+0000] {processor.py:157} INFO - Started process (PID=296) to work on /opt/airflow/dags/my_dag.py
+[2025-11-10T22:38:52.398+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/my_dag.py for tasks to queue
+[2025-11-10T22:38:52.399+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:38:52.399+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:38:52.406+0000] {processor.py:839} INFO - DAG(s) dict_keys(['dag_create_hudi_tables']) retrieved from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:38:52.428+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:38:52.427+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-11-10T22:38:52.441+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:38:52.441+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_create_hudi_tables to 2025-11-09T00:00:00+00:00, run_after=2025-11-10T00:00:00+00:00
+[2025-11-10T22:38:52.456+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/my_dag.py took 0.060 seconds
+[2025-11-10T22:39:22.572+0000] {processor.py:157} INFO - Started process (PID=306) to work on /opt/airflow/dags/my_dag.py
+[2025-11-10T22:39:22.573+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/my_dag.py for tasks to queue
+[2025-11-10T22:39:22.574+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:39:22.574+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:39:22.581+0000] {processor.py:839} INFO - DAG(s) dict_keys(['dag_create_hudi_tables']) retrieved from /opt/airflow/dags/my_dag.py
+[2025-11-10T22:39:22.601+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:39:22.600+0000] {dag.py:2915} INFO - Sync 1 DAGs
+[2025-11-10T22:39:22.614+0000] {logging_mixin.py:151} INFO - [2025-11-10T22:39:22.614+0000] {dag.py:3696} INFO - Setting next_dagrun for dag_create_hudi_tables to 2025-11-09T00:00:00+00:00, run_after=2025-11-10T00:00:00+00:00
+[2025-11-10T22:39:22.626+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/my_dag.py took 0.056 seconds

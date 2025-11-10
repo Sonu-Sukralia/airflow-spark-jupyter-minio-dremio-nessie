@@ -217,7 +217,7 @@ services:
     platform: linux/x86_64
     image: sonusukralia/dremio-oss_asm_v1:1.0    #  dremio/dremio-oss:latest
     container_name: dremio
-    user: "0:0"   # ✅ ensures /opt/dremio/data writable even with mounted host dir
+    user: "0:0"   # user: "1000:1000"  ✅ ensures /opt/dremio/data writable even with mounted host dir
     ports:
       - "9047:9047"
       - "31010:31010"

@@ -165,6 +165,7 @@ Or fix all recursively:
 ```bash
 sudo chown -R 50000:50000 /home/sonu/data/project-root
 sudo chown -R 1000:1000 /home/sonu/data/project-root
+sudo chmod -R 775 /home/sonu/data/project-root
 ```
 
 ---
